@@ -85,14 +85,14 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                height: 300,
                child: Image.asset(model.image),
              ),
-             Row(
+              Row(
                mainAxisAlignment: MainAxisAlignment.center,
                children: [
-                 Text('${model.title1}',
-                   style: const TextStyle(
+                 Text('${model!.title1}',
+                   style: const  TextStyle(
                      color: defaultColor,
                      fontWeight: FontWeight.bold,
-                     fontSize: 16,
+                     fontSize: 20,
                      fontFamily: 'Default',
                    ),
                  ),
@@ -101,7 +101,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
              Row(
                mainAxisAlignment: MainAxisAlignment.center,
                children: [
-                 Text('${model.title2}',
+                  Text('${model!.title2}',
                    style: const TextStyle(
                      color: defaultColor,
                      fontWeight: FontWeight.bold,
@@ -114,7 +114,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
            ],
          ),
         ),
-        SizedBox(height: 100,),
+        const SizedBox(
+          height: 200,
+        ),
         Center(
           child: SmoothPageIndicator(
               controller: broadController,
@@ -130,37 +132,42 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         const SizedBox(
           height: 50,
         ),
-         Spacer(),
-         isLast ? Container(
-                  width: 300,
-                  height: 43,
-            decoration:  BoxDecoration(
-            color: defaultColor,
-            borderRadius: BorderRadius.circular(10),
-            ),
-            child: MaterialButton(
-                  onPressed: (){
-                    if(isLast)
-                    {
-                      navigateAndFinish(context, const ChooseScreen(),);
-                    }else
-                    {
-                      broadController.nextPage(
-                        duration:const Duration(milliseconds: 750,
-                        ),
-                        curve:Curves.fastEaseInToSlowEaseOut,
-                      );
-                    }
-                  },
-            child: Text('Continue',
-              style: TextStyle(
-              color: Colors.white,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-              ),
-            ),
-              ),
-            ) :Row(
+         const Spacer(),
+         isLast ? Row(
+           mainAxisAlignment: MainAxisAlignment.center,
+           children: [
+             Container(
+                      width: 300,
+                      height: 43,
+                decoration:  BoxDecoration(
+                color: defaultColor,
+                borderRadius: BorderRadius.circular(10),
+                ),
+                child: MaterialButton(
+                      onPressed: (){
+                        if(isLast)
+                        {
+                          navigateAndFinish(context, const ChooseScreen(),);
+                        }else
+                        {
+                          broadController.nextPage(
+                            duration:const Duration(milliseconds: 750,
+                            ),
+                            curve:Curves.fastEaseInToSlowEaseOut,
+                          );
+                        }
+                      },
+                child: const Text('Continue',
+                  style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold,
+                  ),
+                ),
+                  ),
+                ),
+           ],
+         ) :Row(
           children: [
             Container(
               width: 100,
@@ -202,7 +209,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       );
                     }
                   },
-                  child: Icon(FontAwesomeIcons.arrowRight,color: Colors.white,),
+                  child: const Icon(FontAwesomeIcons.arrowRight,color: Colors.white,),
                 ),
               ),
           ],

@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Column(
           children:[
-            SafeArea(
+            const SafeArea(
               child: Text("sign in ",
                 style: TextStyle(
                   color: defaultColor,
@@ -42,7 +42,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 30,),
+            const SizedBox(
+              height: 30,
+            ),
             Container(
               height: 149,
               width: 218,
@@ -55,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 30,
             ),
             Padding(
@@ -64,67 +66,73 @@ class _LoginScreenState extends State<LoginScreen> {
                 key: formkey,
                 child: Column(
                   children: [
-                    TextFormField(
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value){
-                        if(value!.isEmpty){
-                          return 'The EmailAddress Must Contain @';
-                        }
-                        return null;
-                      },
-                      onFieldSubmitted: (String value) {
-                        print(value);
-                      },
-                      onChanged: (String value) {
-                        print(value);
-                      },
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.email_outlined,
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextFormField(
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return 'The EmailAddress Must Contain @';
+                          }
+                          return null;
+                        },
+                        onFieldSubmitted: (String value) {
+                          print(value);
+                        },
+                        onChanged: (String value) {
+                          print(value);
+                        },
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.email_outlined,
+                          ),
+                          labelText: 'Email',
+                          hintText: ' enter your email',
+                          border: OutlineInputBorder(),
                         ),
-                        labelText: 'Email',
-                        hintText: ' enter your email',
-                        border: OutlineInputBorder(),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
-                    TextFormField(
-                      obscureText: _IsShow,
-                      controller: passwordController,
-                      keyboardType: TextInputType.visiblePassword,
-                      validator: (value){
-                        if(value!.isEmpty){
-                          return 'The Password Must Not Be Empty';
-                        }
-                        return null;
-                      },
-                      onFieldSubmitted: (String value) {
-                        print(value);
-                      },
-                      onChanged: (String value) {
-                        print(value);
-                      },
-                      decoration: InputDecoration(
-                        suffixIcon: IconButton(
-                          onPressed: (){
-                            setState(() {
-                              _IsShow = !_IsShow;
-                            });
-                          },
-                          icon: _IsShow ? Icon(
-                            Icons.visibility_off,
-                          )
-                              : Icon(Icons.visibility),
+                    Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: TextFormField(
+                        obscureText: _IsShow,
+                        controller: passwordController,
+                        keyboardType: TextInputType.visiblePassword,
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return 'The Password Must Not Be Empty';
+                          }
+                          return null;
+                        },
+                        onFieldSubmitted: (String value) {
+                          print(value);
+                        },
+                        onChanged: (String value) {
+                          print(value);
+                        },
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: (){
+                              setState(() {
+                                _IsShow = !_IsShow;
+                              });
+                            },
+                            icon: _IsShow ? Icon(
+                              Icons.visibility_off,
+                            )
+                                : Icon(Icons.visibility),
+                          ),
+                          prefixIcon: Icon(
+                            Icons.lock,
+                          ),
+                          labelText: 'Password',
+                          hintText: ' enter your password',
+                          border: OutlineInputBorder(),
                         ),
-                        prefixIcon: Icon(
-                          Icons.lock,
-                        ),
-                        labelText: 'Password',
-                        hintText: ' enter your password',
-                        border: OutlineInputBorder(),
                       ),
                     ),
                     Row(
@@ -132,9 +140,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         TextButton(
                           onPressed: () {
-                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> ForgetPassword()));
+                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const ForgetPassword()));
                           },
-                          child: Text(
+                          child:const Text(
                             " Forget Password ?",
                             style: TextStyle(
                               decoration: TextDecoration.underline,
@@ -146,7 +154,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 30,
                     ),
                     Container(
@@ -160,14 +168,17 @@ class _LoginScreenState extends State<LoginScreen> {
                         onPressed: (){
                           _SigninAuth();
                         },
-                        child: Text('Sign In',style: TextStyle(
+                        child:const Text('Sign In',
+                          style: TextStyle(
                             color: Colors.white,
                             fontSize: 30,
                             fontWeight: FontWeight.bold),),
                       ),
                     ),
-                    SizedBox(height: 12,),
-                    Row(
+                    const SizedBox(
+                      height: 12,
+                    ),
+                    const Row(
                       children: [
                         Expanded(child: Divider(
                           color: Colors.grey,
@@ -180,7 +191,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),),
                       ],
                     ),
-                    SizedBox(height: 8,),
+                    const SizedBox(
+                      height: 15,
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -205,19 +218,19 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 12,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "Don't have account ?",
                         ),
                         TextButton(onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> SignUpScreen()));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> const SignUpScreen()));
                         },
-                          child: Text(
+                          child:const Text(
                             "Register now",
                             style: TextStyle(
                               decoration: TextDecoration.underline,

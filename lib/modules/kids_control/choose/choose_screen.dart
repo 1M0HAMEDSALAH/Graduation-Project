@@ -16,10 +16,10 @@ class ChooseScreen extends StatelessWidget {
           padding: const EdgeInsets.all(40.0),
           child: Column(
             children: [
-              SizedBox(
+             const SizedBox(
                 height: 30,
               ),
-              Center(
+              const Center(
                 child: Column(
                   children: [
                     Text(
@@ -34,7 +34,7 @@ class ChooseScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               InkWell(
@@ -50,7 +50,7 @@ class ChooseScreen extends StatelessWidget {
                   height: 250,
                   child: Column(
                     children: [
-                      Center(
+                      const Center(
                         child: Text(
                           "parent phone",
                           style: TextStyle(
@@ -61,13 +61,15 @@ class ChooseScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 3,),
+                      const SizedBox(
+                        height: 3,
+                      ),
                       Container(
-                        width: 250,
+                        width: 275,
                         height: 200,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
-                          image: DecorationImage(
+                          image: const DecorationImage(
                             image: AssetImage("assets/images/choose1.jpg",),
                             fit: BoxFit.fill,
                           ),
@@ -77,12 +79,12 @@ class ChooseScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
               InkWell(
                 onTap: (){
-                  navigateTo(context, ChildSideScreen(),);
+                  navigateTo(context, const ChildSideScreen(),);
                 },
                 child: Container(
                   decoration: BoxDecoration(
@@ -93,7 +95,7 @@ class ChooseScreen extends StatelessWidget {
                   height: 250,
                   child: Column(
                     children: [
-                      Center(
+                      const Center(
                         child: Text(
                           "Kid phone",
                           style: TextStyle(
@@ -104,13 +106,15 @@ class ChooseScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      SizedBox(height: 3,),
+                      const SizedBox(
+                        height: 3,
+                      ),
                       Container(
-                        width: 250,
+                        width: 275,
                         height: 200,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          image: DecorationImage(
+                          image:const DecorationImage(
                             image: AssetImage("assets/images/choose2.jpg",
                             ),
                             fit: BoxFit.fill,

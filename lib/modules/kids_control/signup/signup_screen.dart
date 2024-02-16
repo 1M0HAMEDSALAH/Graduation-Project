@@ -8,8 +8,6 @@ import 'package:kidscontrol/modules/kids_control/Home/homepage.dart';
 import 'package:kidscontrol/modules/kids_control/login/login_screen.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 
-
-
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
 
@@ -37,7 +35,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             key: formkey,
             child: Column(
               children: [
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SafeArea(
@@ -64,131 +62,143 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   width: 182,
                   height: 182,
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
-                TextFormField(
-                  controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'The EmailAddress Must Contain @';
-                    }
-                    return null;
-                  },
-                  onFieldSubmitted: ( String value){
-                    print(value);
-                  },
-                  onChanged: ( String value){
-                    print(value);
-                  },
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                        Icons.email_outlined
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return 'The EmailAddress Must Contain @';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: ( String value){
+                      print(value);
+                    },
+                    onChanged: ( String value){
+                      print(value);
+                    },
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                          Icons.email_outlined
+                      ),
+                      labelText: 'Email',
+                      hintText: ' enter your email',
+                      border: OutlineInputBorder(),
                     ),
-                    labelText: 'Email',
-                    hintText: ' enter your email',
-                    border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
-                TextFormField(
-                  controller: nameController,
-                  keyboardType: TextInputType.text,
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'The name Must Not Be Empty';
-                    }
-                    return null;
-                  },
-                  onFieldSubmitted: ( String value){
-                    print(value);
-                  },
-                  onChanged: ( String value){
-                    print(value);
-                  },
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                        Icons.person
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    controller: nameController,
+                    keyboardType: TextInputType.text,
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return 'The name Must Not Be Empty';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: ( String value){
+                      print(value);
+                    },
+                    onChanged: ( String value){
+                      print(value);
+                    },
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                          Icons.person
+                      ),
+                      labelText: 'Name',
+                      hintText: ' User Name',
+                      border: OutlineInputBorder(),
                     ),
-                    labelText: 'Name',
-                    hintText: ' User Name',
-                    border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
-                TextFormField(
-                  obscureText: _IsShow,
-                  controller: passwordController,
-                  keyboardType: TextInputType.visiblePassword,
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'The Password Must Not Be Empty';
-                    }
-                    return null;
-                  },
-                  onFieldSubmitted: ( String value){
-                    print(value);
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    obscureText: _IsShow,
+                    controller: passwordController,
+                    keyboardType: TextInputType.visiblePassword,
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return 'The Password Must Not Be Empty';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: ( String value){
+                      print(value);
 
-                  },
-                  onChanged: ( String value){
-                    print(value);
+                    },
+                    onChanged: ( String value){
+                      print(value);
 
-                  },
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                        Icons.lock
+                    },
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                          Icons.lock
+                      ),
+                      suffixIcon:IconButton(
+                        onPressed: (){
+                          setState(() {
+                            _IsShow = !_IsShow;
+                          });
+                        },
+                        icon: _IsShow ? Icon(
+                          Icons.visibility_off,
+                        )
+                            : Icon(Icons.visibility),
+                      ),
+                      labelText: 'Password',
+                      hintText: ' enter your password',
+                      border: OutlineInputBorder(),
                     ),
-                    suffixIcon:IconButton(
-                      onPressed: (){
-                        setState(() {
-                          _IsShow = !_IsShow;
-                        });
-                      },
-                      icon: _IsShow ? Icon(
-                        Icons.visibility_off,
-                      )
-                          : Icon(Icons.visibility),
-                    ),
-                    labelText: 'Password',
-                    hintText: ' enter your password',
-                    border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
-                TextFormField(
-                  controller: PhoneController,
-                  keyboardType: TextInputType.phone,
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'The phone Must Not Be Empty';
-                    }
-                    return null;
-                  },
-                  onFieldSubmitted: ( String value){
-                    print(value);
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    controller: PhoneController,
+                    keyboardType: TextInputType.phone,
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return 'The phone Must Not Be Empty';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: ( String value){
+                      print(value);
 
-                  },
-                  onChanged: ( String value){
-                    print(value);
+                    },
+                    onChanged: ( String value){
+                      print(value);
 
-                  },
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                        Icons.phone_android,
+                    },
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                          Icons.phone_android,
+                      ),
+                      labelText: 'Phone Number',
+                      hintText: '+201094542564',
+                      border: OutlineInputBorder(),
                     ),
-                    labelText: 'Phone Number',
-                    hintText: '+201094542564',
-                    border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 40,
                 ),
                 Container(
@@ -214,10 +224,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                 ),
-                SizedBox (
+                const SizedBox (
                   height: 12,
                 ),
-                Row(
+                const Row(
                   children: [
                     Expanded(child: Divider(
                       color: Colors.grey,
@@ -230,7 +240,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),),
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 12,
                 ),
                 Row(
@@ -246,7 +256,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           height: 40.0,
                         )
                     ),
-                    SizedBox(width: 12,),
+                    const SizedBox(
+                      width: 12,
+                    ),
                     TextButton(
                       onPressed: () {
                         _signInWithGoogle();

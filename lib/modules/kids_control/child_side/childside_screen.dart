@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
+import '../../../shared/componants/componants.dart';
+import '../device_apps/deviceapps_screen.dart';
 
 class ChildSideScreen extends StatefulWidget {
   const ChildSideScreen({super.key});
@@ -28,7 +30,7 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
-                SafeArea(
+               const SafeArea(
                   child: Text("Kids side ",
                     style: TextStyle(
                         color: defaultColor,
@@ -38,56 +40,66 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                     ),
                   ),
                 ),
-                SizedBox(height: 100,),
+                const SizedBox(height: 100,),
                 Center(
-                  child: Container(
+                  child:Container(
                       height: 220,
                       child: Image.asset("assets/images/Flying kite-amico.png")),
                 ),
-                TextFormField(
-                  controller: usernameController,
-                  keyboardType: TextInputType.visiblePassword,
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'The Password Must Not Be Empty';
-                    }
-                    return null;
-                  },
-                  onFieldSubmitted: (String value) {
-                    print(value);
-                  },
-                  onChanged: (String value) {
-                    print(value);
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Name',
-                    hintText: '  User Name',
-                    border: OutlineInputBorder(),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    controller: usernameController,
+                    keyboardType: TextInputType.visiblePassword,
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return 'The Password Must Not Be Empty';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: (String value) {
+                      print(value);
+                    },
+                    onChanged: (String value) {
+                      print(value);
+                    },
+                    decoration:  const  InputDecoration(
+                      labelText: 'Name',
+                      hintText: '  User Name',
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                 ),
-                SizedBox(height: 12,),
-                TextFormField(
-                  controller: idController,
-                  keyboardType: TextInputType.visiblePassword,
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'The Password Must Not Be Empty';
-                    }
-                    return null;
-                  },
-                  onFieldSubmitted: (String value) {
-                    print(value);
-                  },
-                  onChanged: (String value) {
-                    print(value);
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'ID',
-                    hintText: ' Child ID',
-                    border: OutlineInputBorder(),
+                const SizedBox(
+                  height: 12,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    controller: idController,
+                    keyboardType: TextInputType.visiblePassword,
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return 'The Password Must Not Be Empty';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: (String value) {
+                      print(value);
+                    },
+                    onChanged: (String value) {
+                      print(value);
+                    },
+                    decoration:  const  InputDecoration(
+                      labelText: 'ID',
+                      hintText: ' Child ID',
+                      border: OutlineInputBorder(),
+                    ),
                   ),
                 ),
-                SizedBox(height: 25,),
+                const SizedBox(
+                  height: 40,
+                ),
                 Container(
                   width: 300,
                   height: 43,
@@ -108,7 +120,9 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                             backgroundColor: defaultColor,
                             textColor: Colors.white,
                             fontSize: 16.0
+
                         );
+                        navigateTo(context,const DeviceApp(),);
                       }
                       else{
                         Fluttertoast.showToast(
@@ -122,8 +136,8 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                         );
                       }
                     },
-                    child: Text(
-                      'SignIn',
+                    child:  const  Text(
+                      'Sign In',
                       style: TextStyle(
                         color: Colors.white,
                         fontSize: 30,

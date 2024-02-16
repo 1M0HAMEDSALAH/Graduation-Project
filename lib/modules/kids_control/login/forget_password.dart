@@ -30,7 +30,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+               const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
@@ -48,32 +48,39 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                       height: 220,
                       child: Image.asset("assets/images/Reset password-rafiki.png")),
                 ),
-                SizedBox(height: 64,),
-                TextFormField(
-                  controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'The EmailAddress Must Contain @';
-                    }
-                    return null;
-                  },
-                  onFieldSubmitted: (String value) {
-                    print(value);
-                  },
-                  onChanged: (String value) {
-                    print(value);
-                  },
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(
-                      Icons.email_outlined,
+                const SizedBox(
+                  height: 64,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(10.0),
+                  child: TextFormField(
+                    controller: emailController,
+                    keyboardType: TextInputType.emailAddress,
+                    validator: (value){
+                      if(value!.isEmpty){
+                        return 'The EmailAddress Must Contain @';
+                      }
+                      return null;
+                    },
+                    onFieldSubmitted: (String value) {
+                      print(value);
+                    },
+                    onChanged: (String value) {
+                      print(value);
+                    },
+                    decoration: InputDecoration(
+                      prefixIcon: Icon(
+                        Icons.email_outlined,
+                      ),
+                      labelText: 'Email',
+                      hintText: ' enter your email',
+                      border: OutlineInputBorder(),
                     ),
-                    labelText: 'Email',
-                    hintText: ' enter your email',
-                    border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 35,),
+                const SizedBox(
+                  height: 50,
+                ),
                 Center(
                   child: Container(
                     width: 300,
