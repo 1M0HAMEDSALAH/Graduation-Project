@@ -146,7 +146,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                     },
                     decoration: InputDecoration(
-                      prefixIcon: Icon(
+                      prefixIcon: const Icon(
                           Icons.lock
                       ),
                       suffixIcon:IconButton(
@@ -155,7 +155,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             _IsShow = !_IsShow;
                           });
                         },
-                        icon: _IsShow ? Icon(
+                        icon: _IsShow ? const Icon(
                           Icons.visibility_off,
                         )
                             : Icon(Icons.visibility),
@@ -188,7 +188,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       print(value);
 
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       prefixIcon: Icon(
                           Icons.phone_android,
                       ),
@@ -213,7 +213,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       _SignupAuth();
                       _showToast(context);
                     },
-                    child: Text(
+                    child: const Text(
                       'Sign Up',
                       style: TextStyle(
                         color: Colors.white,

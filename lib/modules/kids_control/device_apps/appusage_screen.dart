@@ -1,5 +1,6 @@
 import 'package:device_apps/device_apps.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 import 'package:usage_stats/usage_stats.dart';
 
@@ -67,15 +68,13 @@ class _AppUsageState extends State<AppUsage> {
               decoration :  BoxDecoration(
                 borderRadius:BorderRadius.circular(10),
                 color: Colors.grey[300],
-
-
               ),
               child: Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("${(int.parse(UsageApp!.totalTimeInForeground!) / 1000 / 60).toStringAsFixed(2)}\nH:M" ,
+                    Text("${(int.parse(UsageApp!.totalTimeInForeground!) / 1000 / 60).toStringAsFixed(2)}\nM:S" ,
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
@@ -100,7 +99,7 @@ class _AppUsageState extends State<AppUsage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(" ${DateTime.fromMillisecondsSinceEpoch(int.parse(UsageApp!.lastTimeUsed!)).toIso8601String()}",
+                        Text(" ${DateFormat('dd-mm-yyyy HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(UsageApp!.lastTimeUsed!)))}",
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -127,12 +126,13 @@ class _AppUsageState extends State<AppUsage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(" ${DateTime.fromMillisecondsSinceEpoch(int.parse(UsageApp!.firstTimeStamp!)).toIso8601String()}",
+                        Text(" ${DateFormat('dd-mm-yyyy HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(UsageApp!.firstTimeStamp!)))}",
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
                             color: defaultColor,
-                          ),),
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -140,7 +140,6 @@ class _AppUsageState extends State<AppUsage> {
               ),
             ),
           ),
-
         ],
       ),
     );

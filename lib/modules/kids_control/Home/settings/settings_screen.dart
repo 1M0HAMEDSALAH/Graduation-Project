@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:kidscontrol/modules/kids_control/Home/settings/profile_setting.dart';
 import 'package:kidscontrol/modules/kids_control/login/login_screen.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 
@@ -41,15 +42,7 @@ class _SettingsState extends State<Settings> {
             const SizedBox(height: 12,),
             GestureDetector(
               onTap: (){
-                Fluttertoast.showToast(
-                    msg: "Sorry not Implement Yet.",
-                    toastLength: Toast.LENGTH_SHORT,
-                    gravity: ToastGravity.CENTER,
-                    timeInSecForIosWeb: 1,
-                    backgroundColor: Colors.red,
-                    textColor: Colors.white,
-                    fontSize: 16.0
-                );
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Profile()));
               },
               child: Container(
                 width: double.infinity,
