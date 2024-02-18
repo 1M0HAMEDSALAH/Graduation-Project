@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kidscontrol/modules/kids_control/Home/dashboard/addkid.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 
 class Dashboard extends StatefulWidget {
@@ -13,7 +14,9 @@ class _DashboardState extends State<Dashboard> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
+        onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  const AddKid()));
+        },
         child:const Icon(
           Icons.add,
           color: Colors.white,

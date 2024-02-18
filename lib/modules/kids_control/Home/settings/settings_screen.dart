@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:kidscontrol/modules/kids_control/Home/settings/contact_Us.dart';
+import 'package:kidscontrol/modules/kids_control/Home/settings/privacy.dart';
 import 'package:kidscontrol/modules/kids_control/Home/settings/profile_setting.dart';
 import 'package:kidscontrol/modules/kids_control/login/login_screen.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
@@ -10,8 +11,7 @@ import 'package:kidscontrol/shared/styles/colors.dart';
 
 class Settings extends StatefulWidget {
 
-  static const TextStyle optionStyle =
-  TextStyle(
+  static const TextStyle optionStyle = TextStyle(
       fontSize: 30,
       fontWeight: FontWeight.bold,
       color: defaultColor);
@@ -120,6 +120,9 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const Privacy()));
+              },
               child: Container(
                 width: double.infinity,
                 height: 50,
@@ -183,6 +186,9 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             GestureDetector(
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (context)=>const ContactUs()));
+              },
               child: Container(
                 width: double.infinity,
                 height: 50,

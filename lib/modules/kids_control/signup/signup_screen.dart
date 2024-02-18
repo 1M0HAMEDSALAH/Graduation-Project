@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
@@ -16,6 +17,22 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+
+  CollectionReference parent = FirebaseFirestore.instance.collection('Parents');
+
+  _addUser() {
+    return parent
+        .add({
+      'Name': nameController.text,
+      'Email': emailController.text,
+      'Password': passwordController.text ,
+      'Phone': PhoneController.text,
+      'Uid': FirebaseAuth.instance.currentUser!.uid ,
+
+    })
+        .then((value) => print("User Added"))
+        .catchError((error) => print("Failed to add user: $error"));
+  }
 
   var emailController = TextEditingController();
   var passwordController = TextEditingController();
@@ -203,6 +220,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: MaterialButton(
                     onPressed: (){
                       _SignupAuth();
+                      _addUser();
                       _showToast(context);
                     },
                     child: const Text(
