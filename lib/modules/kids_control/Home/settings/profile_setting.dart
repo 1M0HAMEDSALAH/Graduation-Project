@@ -19,10 +19,10 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: defaultColor,
+
         title: const Text('Profile',
           style: TextStyle(
-            color: Colors.white,
+            color: defaultColor,
           fontSize: 25.0,
           fontWeight: FontWeight.w700
       ),
@@ -30,7 +30,7 @@ class _ProfileState extends State<Profile> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           children: [
             const SizedBox(height: 30,),

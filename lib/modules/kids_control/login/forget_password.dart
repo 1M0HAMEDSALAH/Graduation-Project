@@ -31,19 +31,25 @@ class _ForgetPasswordState extends State<ForgetPassword> {
             crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Reset Your Password',
-                      style: TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.w900,
-                        color: defaultColor,
-                      ),
-                    ),
-                  ],
+                 mainAxisAlignment: MainAxisAlignment.center,
+                 children: [
+                   Text(
+                     'Reset Your Password',
+                     style: TextStyle(
+                       fontSize: 30,
+                       fontWeight: FontWeight.w900,
+                       color: defaultColor,
+                     ),
+                   ),
+
+                 ],
+               ),
+                const SizedBox(
+                  height: 30,
                 ),
+
                 Center(
+
                   child: Container(
                       height: 220,
                       child: Image.asset("assets/images/Reset password-rafiki.png")),

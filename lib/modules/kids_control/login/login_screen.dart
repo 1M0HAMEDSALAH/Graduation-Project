@@ -29,26 +29,34 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title:const Text(
+          "Sign In",
+          style: TextStyle(
+            // shadows: [
+            //   Shadow(
+            //     color: Colors.black38,
+            //     offset: Offset(2.0, 2.0),
+            //   ),
+            // ],
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: defaultColor,
+            fontFamily: 'Default',
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children:[
-            const SafeArea(
-              child: Text("sign in ",
-                style: TextStyle(
-                  color: defaultColor,
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900
-                ),
-              ),
-            ),
             const SizedBox(
               height: 30,
             ),
             Container(
               height: 149,
               width: 218,
-              decoration: BoxDecoration(
+              decoration:const  BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
                     "assets/images/Login-rafiki.png",
@@ -83,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onChanged: (String value) {
                           print(value);
                         },
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           prefixIcon: Icon(
                             Icons.email_outlined,
                           ),
@@ -121,17 +129,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                 _IsShow = !_IsShow;
                               });
                             },
-                            icon: _IsShow ? Icon(
+                            icon: _IsShow ? const Icon(
                               Icons.visibility_off,
                             )
-                                : Icon(Icons.visibility),
+                                : const Icon(Icons.visibility),
                           ),
-                          prefixIcon: Icon(
+                          prefixIcon: const Icon(
                             Icons.lock,
                           ),
                           labelText: 'Password',
                           hintText: ' enter your password',
-                          border: OutlineInputBorder(),
+                          border: const OutlineInputBorder(),
                         ),
                       ),
                     ),
@@ -207,7 +215,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               height: 40.0,
                             )
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 12,
                         ),
                         TextButton(

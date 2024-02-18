@@ -5,12 +5,11 @@ import 'package:kidscontrol/modules/kids_control/Home/location/location_screen.d
 import 'package:kidscontrol/modules/kids_control/Home/notification/notification_screen.dart';
 import 'package:kidscontrol/modules/kids_control/Home/settings/settings_screen.dart';
 
-
 class HomePage extends StatefulWidget {
-
   @override
   _HomePageState createState() => _HomePageState();
 }
+
 
 class _HomePageState extends State<HomePage> {
 

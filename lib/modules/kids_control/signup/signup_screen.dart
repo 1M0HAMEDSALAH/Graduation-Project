@@ -27,7 +27,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title:const Text(
+          "Sign Up",
+          style: TextStyle(
+            // shadows: [
+            //   Shadow(
+            //     color: Colors.black38,
+            //     offset: Offset(2.0, 2.0),
+            //   ),
+            // ],
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: defaultColor,
+            fontFamily: 'Default',
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
@@ -35,35 +52,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             key: formkey,
             child: Column(
               children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SafeArea(
-                      child: Text(
-                        "Sign Up",
-                        style: TextStyle(
-                          // shadows: [
-                          //   Shadow(
-                          //     color: Colors.black38,
-                          //     offset: Offset(2.0, 2.0),
-                          //   ),
-                          // ],
-                          fontSize: 25,
-                          fontWeight: FontWeight.w700,
-                          color: defaultColor,
-                          fontFamily: 'Default',
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
                 Image.asset(
                   'assets/images/Sign up-rafiki.png',
                   width: 182,
                   height: 182,
-                ),
-                const SizedBox(
-                  height: 12,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(10.0),
@@ -82,7 +74,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     onChanged: ( String value){
                       print(value);
                     },
-                    decoration: InputDecoration(
+                    decoration:const  InputDecoration(
                       prefixIcon: Icon(
                           Icons.email_outlined
                       ),
@@ -112,7 +104,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     onChanged: ( String value){
                       print(value);
                     },
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       prefixIcon: Icon(
                           Icons.person
                       ),
@@ -158,11 +150,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         icon: _IsShow ? const Icon(
                           Icons.visibility_off,
                         )
-                            : Icon(Icons.visibility),
+                            : const Icon(Icons.visibility),
                       ),
                       labelText: 'Password',
                       hintText: ' enter your password',
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                     ),
                   ),
                 ),
@@ -199,7 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 40,
+                  height: 30,
                 ),
                 Container(
                   width: 300,

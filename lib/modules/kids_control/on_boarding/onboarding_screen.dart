@@ -172,7 +172,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             Container(
               width: 100,
               decoration: BoxDecoration(
-                color: Colors.white,
                 borderRadius: BorderRadiusDirectional.circular(10),
               ),
               child: TextButton(
@@ -182,8 +181,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               },
                   child: const Text("Skip",
                     style: TextStyle(
-                      decoration: TextDecoration.underline,
-                      decorationColor: defaultColor,
                       fontSize: 25,
                       color:defaultColor,
                       fontWeight: FontWeight.w600,

@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:kidscontrol/modules/kids_control/Home/settings/profile_setting.dart';
@@ -11,7 +11,10 @@ import 'package:kidscontrol/shared/styles/colors.dart';
 class Settings extends StatefulWidget {
 
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 30, fontWeight: FontWeight.bold,color: defaultColor);
+  TextStyle(
+      fontSize: 30,
+      fontWeight: FontWeight.bold,
+      color: defaultColor);
 
 
   @override
@@ -19,6 +22,8 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,13 +38,20 @@ class _SettingsState extends State<Settings> {
         ),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(20.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const SizedBox(height: 12,),
-            const Text('Profile',style: Settings.optionStyle,),
-            const SizedBox(height: 12,),
+            const SizedBox(
+              height: 12,
+            ),
+            const Text(
+              'Profile',
+              style: Settings.optionStyle,
+            ),
+            const SizedBox(
+              height: 12,
+            ),
             GestureDetector(
               onTap: (){
                 Navigator.of(context).push(MaterialPageRoute(builder: (context) => const Profile()));
@@ -51,62 +63,62 @@ class _SettingsState extends State<Settings> {
                   children: [
                     Icon(Icons.update,color: defaultColor,),
                     SizedBox(width: 8,),
-                    Text('Update Profile',style: TextStyle(
+                    Text(
+                      'Update Profile',
+                      style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: 20,
                       fontFamily: 'default'
                     ),),
                     Spacer(),
-                    Icon(FontAwesomeIcons.arrowRight,color: defaultColor,),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: defaultColor,),
                   ],
                 ),
               ),
             ),
-            const SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             GestureDetector(
               child: Container(
                 width: double.infinity,
                 height: 50,
                 child: const Row(
                   children: [
-                    Icon(FontAwesomeIcons.language,color: defaultColor,),
-                    SizedBox(width: 8,),
-                    Text('Change Language',style: TextStyle(
+                    Icon(
+                      FontAwesomeIcons.language,
+                      color: defaultColor,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(
+                      'Change Language',
+                      style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
                         fontFamily: 'default'
                     ),),
                     Spacer(),
-                    Icon(FontAwesomeIcons.arrowRight,color: defaultColor,),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: defaultColor,),
                   ],
                 ),
               ),
             ),
-            const SizedBox(height: 8,),
-            Container(
-              width: double.infinity,
-              height: 50,
-              child: Row(
-                children: [
-                  const Icon(Icons.dark_mode_outlined,color: defaultColor,),
-                  const SizedBox(width: 8,),
-                  const Text('Dark Mode',style: TextStyle(
-                      fontWeight: FontWeight.w600,
-                      fontSize: 20,
-                      fontFamily: 'default'
-                  ),),
-                  const Spacer(),
-                  IconButton(
-                    onPressed: (){},
-                      icon: const Icon(FontAwesomeIcons.toggleOff,color: defaultColor,
-                      ),
-                  ),
-                ],
-              ),
+            const SizedBox(
+              height: 8,
             ),
-            const SizedBox(height: 12,),
-            const Text('privacy',style: Settings.optionStyle,),
-            const SizedBox(height: 8,),
+            const Text(
+              'privacy',
+              style: Settings.optionStyle,
+            ),
+            const SizedBox(
+              height: 8,
+            ),
             GestureDetector(
               child: Container(
                 width: double.infinity,
@@ -114,19 +126,27 @@ class _SettingsState extends State<Settings> {
                 child: const Row(
                   children: [
                     Icon(Icons.privacy_tip,color: defaultColor,),
-                    SizedBox(width: 8,),
-                    Text('Privacy Policy',style: TextStyle(
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      'Privacy Policy',
+                      style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
                         fontFamily: 'default'
                     ),),
                     Spacer(),
-                    Icon(FontAwesomeIcons.arrowRight,color: defaultColor,),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: defaultColor,),
                   ],
                 ),
               ),
             ),
-            const SizedBox(height: 8,),
+            const SizedBox(
+              height: 8,
+            ),
             GestureDetector(
               child: Container(
                 width: double.infinity,
@@ -134,21 +154,34 @@ class _SettingsState extends State<Settings> {
                 child: const Row(
                   children: [
                     Icon(Icons.person_3_outlined,color: defaultColor,),
-                    SizedBox(width: 8,),
-                    Text('Terms and Conditions',style: TextStyle(
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      'Terms and Conditions',
+                      style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
                         fontFamily: 'default'
                     ),),
                     Spacer(),
-                    Icon(FontAwesomeIcons.arrowRight,color: defaultColor,),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: defaultColor,),
                   ],
                 ),
               ),
             ),
-            const SizedBox(height: 12,),
-            const Text('Get Us',style: Settings.optionStyle,),
-            const SizedBox(height: 8,),
+            const SizedBox(
+              height: 12,
+            ),
+            const Text(
+              'Get Us',
+              style: Settings.optionStyle,
+            ),
+            const SizedBox(
+              height: 8,
+            ),
             GestureDetector(
               child: Container(
                 width: double.infinity,
@@ -156,14 +189,20 @@ class _SettingsState extends State<Settings> {
                 child: const Row(
                   children: [
                     Icon(Icons.question_mark_sharp,color: defaultColor,),
-                    SizedBox(width: 8,),
-                    Text('Contact Us',style: TextStyle(
+                    SizedBox(
+                      width: 8,
+                    ),
+                    Text(
+                      'Contact Us',
+                      style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
                         fontFamily: 'default'
                     ),),
                     Spacer(),
-                    Icon(FontAwesomeIcons.arrowRight,color: defaultColor,),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      color: defaultColor,),
                   ],
                 ),
               ),

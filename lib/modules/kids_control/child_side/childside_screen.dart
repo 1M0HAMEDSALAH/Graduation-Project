@@ -22,7 +22,24 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
   Widget build(BuildContext context) {
 
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title:const Text(
+          "Kids side",
+          style: TextStyle(
+            // shadows: [
+            //   Shadow(
+            //     color: Colors.black38,
+            //     offset: Offset(2.0, 2.0),
+            //   ),
+            // ],
+            fontSize: 25,
+            fontWeight: FontWeight.bold,
+            color: defaultColor,
+            fontFamily: 'Default',
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         child: Form(
           key: formkey,
@@ -30,17 +47,9 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
             padding: const EdgeInsets.all(12.0),
             child: Column(
               children: [
-               const SafeArea(
-                  child: Text("Kids side ",
-                    style: TextStyle(
-                        color: defaultColor,
-                        fontSize: 24,
-                        fontWeight: FontWeight.w900,
-                        fontFamily: 'default',
-                    ),
-                  ),
+                const SizedBox(
+                  height: 100,
                 ),
-                const SizedBox(height: 100,),
                 Center(
                   child:Container(
                       height: 220,

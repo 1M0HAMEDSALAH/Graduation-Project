@@ -5,7 +5,6 @@ import 'package:kidscontrol/modules/kids_control/device_apps/help_screen.dart';
 import 'package:kidscontrol/modules/kids_control/device_apps/notification_screen.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 import 'package:usage_stats/usage_stats.dart';
-
 import 'appusage_screen.dart';
 
 

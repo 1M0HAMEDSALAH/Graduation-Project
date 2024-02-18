@@ -1,13 +1,19 @@
 import 'package:flutter/material.dart';
 
+import '../../../../shared/styles/colors.dart';
+
 class Location extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Text('location',
-        style: TextStyle(
-          color: Colors.black,
-          fontSize: 40.0,
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          "location",
+          style:  TextStyle(
+            color: defaultColor,
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ),
     );

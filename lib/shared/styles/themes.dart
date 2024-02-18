@@ -1,84 +1,73 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-ThemeData darkTheme = ThemeData(
-  primarySwatch: Colors.deepPurple,
-  scaffoldBackgroundColor: HexColor('3333739'),
-  appBarTheme: AppBarTheme(
-    titleSpacing: 20.0,
+import 'package:kidscontrol/shared/styles/colors.dart';
+ThemeData darkTheme =  ThemeData(
+  scaffoldBackgroundColor: Colors.black,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: Colors.black,
     systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: HexColor('3333739'),
+      statusBarColor: Colors.black,
       statusBarIconBrightness: Brightness.light,
     ),
-    backgroundColor: HexColor('3333739'),
     elevation: 0.0,
-    titleTextStyle: const TextStyle(
-      color: Colors.white,
-      fontSize: 20.0,
+    titleTextStyle:  TextStyle(
+      color:defaultColor,
+      fontSize: 25.0,
       fontWeight: FontWeight.bold,
     ),
-    iconTheme: const IconThemeData(
-      color: Colors.white,
+    iconTheme: IconThemeData(
+      color:defaultColor,
     ),
   ),
-  floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    backgroundColor: Colors.deepPurple,
-  ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    type: BottomNavigationBarType.fixed,
-    selectedItemColor: Colors.deepPurple,
-    unselectedItemColor: Colors.grey,
-    elevation: 20.0,
-    backgroundColor: HexColor('3333739'),
-  ),
-  textTheme:  const TextTheme(
-    bodyText1: TextStyle(
-      fontSize: 18.0,
-      fontWeight: FontWeight.w600,
-      color: Colors.white,
-    ),
 
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor:defaultColor,
   ),
+
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    type: BottomNavigationBarType.fixed,
+    selectedItemColor: defaultColor,
+    unselectedItemColor: Colors.white,
+    elevation: 20.0,
+    backgroundColor:Colors.black,
+  ),
+
 
 );
 ThemeData lightTheme = ThemeData(
-  primarySwatch: Colors.deepPurple,
-  scaffoldBackgroundColor: HexColor('3333739'),
-  appBarTheme: AppBarTheme(
-    titleSpacing: 20.0,
+  scaffoldBackgroundColor: Colors.white,
+  appBarTheme: const AppBarTheme(
+    backgroundColor: Colors.white,
     systemOverlayStyle: SystemUiOverlayStyle(
-      statusBarColor: HexColor('3333739'),
-      statusBarIconBrightness: Brightness.light,
+      statusBarColor: Colors.white,
+      statusBarIconBrightness: Brightness.dark,
     ),
-    backgroundColor: HexColor('3333739'),
     elevation: 0.0,
-    titleTextStyle: const TextStyle(
-      color: Colors.white,
-      fontSize: 20.0,
+    titleTextStyle:  TextStyle(
+      color:defaultColor,
+      fontSize: 25.0,
       fontWeight: FontWeight.bold,
     ),
-    iconTheme: const IconThemeData(
-      color: Colors.white,
+    iconTheme: IconThemeData(
+      color:defaultColor,
     ),
   ),
-  floatingActionButtonTheme: const FloatingActionButtonThemeData(
-    backgroundColor: Colors.deepPurple,
-  ),
-  bottomNavigationBarTheme: BottomNavigationBarThemeData(
-    type: BottomNavigationBarType.fixed,
-    selectedItemColor: Colors.deepPurple,
-    unselectedItemColor: Colors.grey,
-    elevation: 20.0,
-    backgroundColor: HexColor('3333739'),
-  ),
-  textTheme:  const TextTheme(
-    bodyText1: TextStyle(
-      fontSize: 18.0,
-      fontWeight: FontWeight.w600,
-      color: Colors.white,
-    ),
 
+  floatingActionButtonTheme: const FloatingActionButtonThemeData(
+    backgroundColor:defaultColor,
   ),
+
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    type: BottomNavigationBarType.fixed,
+    selectedItemColor: defaultColor,
+    unselectedItemColor: Colors.white,
+    elevation: 20.0,
+    backgroundColor:Colors.white,
+  ),
+
 
 );
+
+
