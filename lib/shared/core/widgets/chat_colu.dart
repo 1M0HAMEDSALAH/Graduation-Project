@@ -20,10 +20,10 @@ class MessageBubble extends StatelessWidget {
         children: [
           isMe
               ? const SizedBox()
-              : const CircleImage(
-                  circleSize: 16,
-                  borderSize: 14,
-                ),
+              : const CircleAvatar(
+            radius: 20,
+            backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
+          ),
           const SizedBox(width: 8),
           Material(
             borderRadius: BorderRadius.only(

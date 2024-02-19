@@ -45,17 +45,28 @@ Future _displayDialogLocation(BuildContext context){
         builder: (context) => Container(
           width: double.infinity,
           height: 350,
-          child: const Padding(
-            padding: EdgeInsets.all(12.0),
+          child: Padding(
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                SizedBox(height: 12,),
+                const SizedBox(height: 12,),
                 Center(
-                  child: Divider(
-                    endIndent: 150,
-                    thickness: 12,
-                    indent: 150,
+                  child: Column(
+                    children: [
+                      Container(
+                        decoration: BoxDecoration(
+                          color:  const Color.fromRGBO(217, 217, 217, 1),
+                          borderRadius: BorderRadius.circular(50)
+                        ),
+                        width: 40,
+                        height: 12,
+                      ),
+                      const Divider(
+                        endIndent: 20,
+                        indent: 20,
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: 12,),

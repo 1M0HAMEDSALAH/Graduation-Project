@@ -59,7 +59,7 @@ class _SplachState extends State<Splach> {
             Container(
               width: 300,
               height: 300,
-              child: Image.asset('assets/images/splach1.jpg',
+              child: Image.asset('assets/images/Family-pana.png',
               ),
             ),
             const SizedBox(

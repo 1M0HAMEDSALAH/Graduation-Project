@@ -14,6 +14,11 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
+  @override
+  void initState() {
+    readData();
+    super.initState();
+  }
   String _email = '......';
   String _name = '.......';
   String _phone = '......';
@@ -42,12 +47,6 @@ class _ProfileState extends State<Profile> {
     }).catchError((e) {
       print('Error getting documents: $e');
     });
-  }
-
-  @override
-  void initState() {
-    readData();
-    super.initState();
   }
 
   static const TextStyle optionStyle =

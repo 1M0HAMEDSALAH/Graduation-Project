@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kidscontrol/shared/core/widgets/chat_colu.dart';
-import 'package:kidscontrol/shared/core/widgets/circle.dart';
 import 'package:kidscontrol/shared/core/widgets/textformfield.dart';
 import 'package:kidscontrol/shared/model/chat_model.dart';
 
@@ -35,9 +34,9 @@ class ChatWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 5),
-                const CircleImage(
-                  circleSize: 20,
-                  borderSize: 18,
+                const CircleAvatar(
+                  radius: 20,
+                  backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
                 ),
                 const SizedBox(width: 10),
                 const Text(
@@ -45,25 +44,26 @@ class ChatWidget extends StatelessWidget {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
                 ),
                 const SizedBox(width: 40),
-                Expanded(
-                  child: ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: messages.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final message = messages[index];
-                      return MessageBubble(
-                        sender: message.sender,
-                        text: message.text,
-                        isMe: message.sender == 'Me',
-                      );
-                    },
-                  ),
-                ),
-                const SendMessage(),
-                const SizedBox(height: 20)
+
           ],
         ),
+            Expanded(
+              child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: messages.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final message = messages[index];
+                  return MessageBubble(
+                    sender: message.sender,
+                    text: message.text,
+                    isMe: message.sender == 'Me',
+                  );
+                },
+              ),
+            ),
+            const SendMessage(),
+            const SizedBox(height: 20)
   ]),
     )
     );

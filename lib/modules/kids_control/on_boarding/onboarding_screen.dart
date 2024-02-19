@@ -26,22 +26,17 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       title1: "Protect Your Child From",
       title2: ' Addition!',
 
-
-
     ),
     BoardingModel(
       image: 'assets/images/Going offline-amico.png',
       title1: 'Provide Your Child A Safe ',
       title2: 'Digital Experience....',
 
-
     ),
     BoardingModel(
       image: 'assets/images/Parents-rafiki.png',
       title1: "Help you set dos and don'ts for ",
       title2: 'their online word...',
-
-
 
     ),
   ];
@@ -72,7 +67,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       );
   }
   Widget builderBroadingItem(BoardingModel model)=> Padding(
-    padding: const EdgeInsets.all(20.0),
+    padding: const EdgeInsets.all(10.0),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -80,6 +75,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
            child: Column(
            crossAxisAlignment: CrossAxisAlignment.start,
            children: [
+             const SizedBox(height: 100,),
              Container(
                width: 300,
                height: 300,
@@ -92,7 +88,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                    style: const  TextStyle(
                      color: defaultColor,
                      fontWeight: FontWeight.bold,
-                     fontSize: 20,
+                     fontSize: 18,
                      fontFamily: 'Default',
                    ),
                  ),
@@ -114,9 +110,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
            ],
          ),
         ),
-        const SizedBox(
-          height: 200,
-        ),
+        const Spacer(),
         Center(
           child: SmoothPageIndicator(
               controller: broadController,
@@ -127,7 +121,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 dotHeight: 10,
                 spacing: 5.0,
               ),
-              count: boarding.length),
+              count: boarding.length,
+          ),
         ),
         const SizedBox(
           height: 50,

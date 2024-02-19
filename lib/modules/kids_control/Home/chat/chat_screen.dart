@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:kidscontrol/modules/kids_control/Home/chat/chat.dart';
 import 'package:kidscontrol/shared/core/widgets/circle.dart';
+import 'package:kidscontrol/shared/styles/colors.dart';
 
 class Chats extends StatelessWidget {
   const Chats({super.key});
@@ -9,10 +10,11 @@ class Chats extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         title: const Text(
           "Chats",
           style: TextStyle(
-              color: Colors.blue, fontSize: 25, fontWeight: FontWeight.bold),
+              color: defaultColor, fontSize: 25, fontWeight: FontWeight.bold),
         ),
       ),
       body: Container(
@@ -46,9 +48,9 @@ class ChatItems extends StatelessWidget {
       },
       child: const Row(
         children: [
-          CircleImage(
-            circleSize: 35,
-            borderSize: 33,
+          CircleAvatar(
+            radius: 30,
+            backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
           ),
           SizedBox(width: 10),
           Column(

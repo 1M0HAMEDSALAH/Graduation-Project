@@ -17,7 +17,7 @@ class ChooseScreen extends StatelessWidget {
           child: Column(
             children: [
              const SizedBox(
-                height: 30,
+                height: 50,
               ),
               const Center(
                 child: Column(
@@ -35,7 +35,7 @@ class ChooseScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(
-                height: 40,
+                height: 55,
               ),
               InkWell(
                 onTap: (){
@@ -46,27 +46,31 @@ class ChooseScreen extends StatelessWidget {
                     color: defaultColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  width: 350,
+                  width: 260,
                   height: 250,
                   child: Column(
                     children: [
+                      const SizedBox(
+                        height: 10,
+
+                      ),
                       const Center(
                         child: Text(
                           "parent phone",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 25,
+                            fontSize: 20,
                             fontWeight: FontWeight.w500,
                             fontFamily: 'Default',
                           ),
                         ),
                       ),
                       const SizedBox(
-                        height: 3,
+                        height: 20,
                       ),
                       Container(
-                        width: 275,
-                        height: 200,
+                        width: 230,
+                        height: 176,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
                           image: const DecorationImage(
@@ -91,27 +95,31 @@ class ChooseScreen extends StatelessWidget {
                     color: defaultColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  width: 350,
+                  width: 260,
                   height: 250,
                   child: Column(
                     children: [
+                      const SizedBox(
+                        height: 10,
+
+                      ),
                       const Center(
                         child: Text(
                           "Kid phone",
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 25,
+                            fontSize: 20,
                             fontFamily: 'Default',
                             fontWeight: FontWeight.w500,
                           ),
                         ),
                       ),
                       const SizedBox(
-                        height: 3,
+                        height: 20,
                       ),
                       Container(
-                        width: 275,
-                        height: 200,
+                        width: 230,
+                        height: 176,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image:const DecorationImage(
