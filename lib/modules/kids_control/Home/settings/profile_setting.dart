@@ -14,43 +14,25 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
+  List<Map<String, dynamic>> profileData = [];
+
+  readData() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('Parents')
+        .where('Uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .get();
+    profileData = querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+    setState(() {});
+  }
+
   @override
   void initState() {
     readData();
     super.initState();
   }
-  String _email = '......';
-  String _name = '.......';
-  String _phone = '......';
-  String _pass = '......';
-
-  void readData() async {
-    await FirebaseFirestore.instance
-        .collection('Parents')
-        .where('Uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        Map<String, dynamic> userData = doc.data() as Map<String, dynamic>;
-        String email = userData['Email'];
-        String user_name = userData['Name'];
-        String phone = userData['Phone'];
-        String passwoed = userData['Password'];
-
-        setState(() {
-          _email = email;
-          _name = user_name;
-          _phone = phone;
-          _pass = passwoed;
-        });
-      });
-    }).catchError((e) {
-      print('Error getting documents: $e');
-    });
-  }
 
   static const TextStyle optionStyle =
-  TextStyle(fontSize: 18, fontWeight: FontWeight.w400,color: Colors.grey,fontFamily: 'Default',);
+  TextStyle(fontSize: 17, fontWeight: FontWeight.w400,color: Colors.grey,fontFamily: 'Default',);
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +53,7 @@ class _ProfileState extends State<Profile> {
                   color: defaultColor,
                   borderRadius: BorderRadius.only(bottomLeft:Radius.circular(500) ,bottomRight: Radius.circular(400)),
                 ),
-               child: Image.asset('assets/images/profile.png'),
+                child: Image.asset('assets/images/profile.png'),
               ),
             ],
           ),
@@ -83,12 +65,12 @@ class _ProfileState extends State<Profile> {
             ),
           ),
           const SizedBox(height: 35,),
-          const Row(
+          Row(
             children: [
-              SizedBox(width: 12,),
-              Icon(Icons.person,color: Colors.grey,size: 30,),
-              SizedBox(width: 12,),
-              Text('Mohamed Ali',
+              const SizedBox(width: 12,),
+              const Icon(Icons.person,color: Colors.grey,size: 30,),
+              const SizedBox(width: 12,),
+              Text(profileData.isNotEmpty ? profileData[0]['Name'] : 'Not Set',
                 style: optionStyle,
               ),
             ],
@@ -96,12 +78,12 @@ class _ProfileState extends State<Profile> {
           const SizedBox(height: 8,),
           const Divider(indent: 14,endIndent: 14 ,),
           const SizedBox(height: 25,),
-          const Row(
+          Row(
             children: [
-              SizedBox(width: 12,),
-              Icon(Icons.email,color: Colors.grey,size: 30,),
-              SizedBox(width: 12,),
-              Text('MohamedAli12@gmail.com',
+              const SizedBox(width: 12,),
+              const Icon(Icons.email,color: Colors.grey,size: 30,),
+              const SizedBox(width: 12,),
+              Text(profileData.isNotEmpty ? profileData[0]['Email'] : 'Not Set',
                 style: optionStyle,
               ),
             ],
@@ -109,12 +91,12 @@ class _ProfileState extends State<Profile> {
           const SizedBox(height: 8,),
           const Divider(indent: 14,endIndent: 14 ,),
           const SizedBox(height: 25,),
-          const Row(
+          Row(
             children: [
-              SizedBox(width: 12,),
-              Icon(Icons.phone_android,color: Colors.grey,size: 30,),
-              SizedBox(width: 12,),
-              Text('01225644901',
+              const SizedBox(width: 12,),
+              const Icon(Icons.phone_android,color: Colors.grey,size: 30,),
+              const SizedBox(width: 12,),
+              Text(profileData.isNotEmpty ? profileData[0]['Phone'] : 'Not Set',
                 style: optionStyle,
               ),
             ],
@@ -122,12 +104,12 @@ class _ProfileState extends State<Profile> {
           const SizedBox(height: 8,),
           const Divider(indent: 14,endIndent: 14 ,),
           const SizedBox(height: 25,),
-          const Row(
+          Row(
             children: [
-              SizedBox(width: 12,),
-              Icon(Icons.lock,color: Colors.grey,size: 30,),
-              SizedBox(width: 12,),
-              Text('mohamed123',
+              const SizedBox(width: 12,),
+              const Icon(Icons.lock,color: Colors.grey,size: 30,),
+              const SizedBox(width: 12,),
+              Text(profileData.isNotEmpty ? profileData[0]['Password'] : 'Not Set',
                 style: optionStyle,
               ),
             ],
@@ -135,12 +117,12 @@ class _ProfileState extends State<Profile> {
           const SizedBox(height: 8,),
           const Divider(indent: 14,endIndent: 14 ,),
           const SizedBox(height: 25,),
-          const Row(
+          Row(
             children: [
-              SizedBox(width: 12,),
-              Icon(FontAwesomeIcons.birthdayCake,color: Colors.grey,size: 30,),
-              SizedBox(width: 12,),
-              Text('20-6-1997',
+              const SizedBox(width: 12,),
+              const Icon(FontAwesomeIcons.birthdayCake,color: Colors.grey,size: 30,),
+              const SizedBox(width: 12,),
+              Text(profileData[0]['BD'] ?? 'Not Set',
                 style: optionStyle,
               ),
             ],
@@ -160,7 +142,7 @@ class _ProfileState extends State<Profile> {
                 ),
                 child: MaterialButton(
                   onPressed: (){
-                        Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UpdatePhoto()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UpdatePhoto()));
                   },
                   child: const Text(
                     'Edit Profile',

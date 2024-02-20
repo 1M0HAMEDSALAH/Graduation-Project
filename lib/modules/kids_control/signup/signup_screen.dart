@@ -27,8 +27,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
       'Email': emailController.text,
       'Password': passwordController.text ,
       'Phone': PhoneController.text,
+      'BD': '9-9-9999',
       'Uid': FirebaseAuth.instance.currentUser!.uid ,
-
     })
         .then((value) => print("User Added"))
         .catchError((error) => print("Failed to add user: $error"));
@@ -220,7 +220,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: MaterialButton(
                     onPressed: (){
                       _SignupAuth();
-                      _addUser();
                       _showToast(context);
                     },
                     child: const Text(
@@ -293,6 +292,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           password: passwordController.text,
         );
         FirebaseAuth.instance.currentUser!.sendEmailVerification();
+        _addUser();
         Navigator.of(context).push(MaterialPageRoute(builder: (context)=> LoginScreen()));
       } on FirebaseAuthException catch (e) {
         if (e.code == 'weak-password') {
