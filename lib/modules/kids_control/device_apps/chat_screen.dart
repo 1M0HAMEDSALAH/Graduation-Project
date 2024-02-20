@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:kidscontrol/shared/core/widgets/textformfield.dart';
 
-import '../../../shared/core/widgets/textformfield.dart';
+
 class ChatScreen extends StatefulWidget {
   const ChatScreen({super.key});
   @override
@@ -56,23 +56,24 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
   var size = MediaQuery.of(context).size;
-  return Row(
-  children: [
-  Container(
-  height: 40,
-  decoration: BoxDecoration(
-  color: Colors.grey[200], borderRadius: BorderRadius.circular(20)),
-  width: size.width / 1.3,
-  child: TextFormFiled(
-  hint: 'Message',
-  ),
-  ),
-  SizedBox(width: 20),
-  const Icon(
-  Icons.send,
-  color: Colors.blue,
-  ),
-  ],
-  );
+      return Row(
+      children: [
+            Container(
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.grey[200], borderRadius: BorderRadius.circular(20),
+              ),
+              width: size.width / 1.3,
+              child: TextFormFiled(
+                hint: 'Message',
+              ),
+             ),
+            SizedBox(width: 20),
+            const Icon(
+                Icons.send,
+                color: Colors.blue,
+            ),
+        ],
+      );
   }
-  }
+}

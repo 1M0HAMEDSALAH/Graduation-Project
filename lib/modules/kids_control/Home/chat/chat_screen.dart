@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:kidscontrol/modules/kids_control/Home/chat/chat.dart';
-import 'package:kidscontrol/shared/core/widgets/circle.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 
 class Chats extends StatelessWidget {
