@@ -272,7 +272,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       onPressed: () {
                         _signInWithGoogle();
                       },
-                      child: Image.asset("assets/images/GoogleIcon.png",width: 40,height: 40,),
+                      child: CircleAvatar(
+                        radius: 22,
+                        backgroundImage: AssetImage('assets/images/GoogleIcon.png'),
+                      ),
                     ),
                   ],
                 ),

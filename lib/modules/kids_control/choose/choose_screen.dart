@@ -17,7 +17,7 @@ class ChooseScreen extends StatelessWidget {
           child: Column(
             children: [
              const SizedBox(
-                height: 50,
+                height: 25,
               ),
               const Center(
                 child: Column(
@@ -74,7 +74,7 @@ class ChooseScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
                           image: const DecorationImage(
-                            image: AssetImage("assets/images/choose1.jpg",),
+                            image: AssetImage("assets/images/african family-amico.png",),
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -123,7 +123,7 @@ class ChooseScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
                           image:const DecorationImage(
-                            image: AssetImage("assets/images/choose2.jpg",
+                            image: AssetImage("assets/images/Kids playing with dolls-amico.png",
                             ),
                             fit: BoxFit.fill,
                           ),

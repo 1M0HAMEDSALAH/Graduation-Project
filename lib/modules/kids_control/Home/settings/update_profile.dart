@@ -1,11 +1,14 @@
-import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:kidscontrol/modules/kids_control/Home/settings/settings_screen.dart';
+import 'package:kidscontrol/modules/kids_control/Home/settings/profile_setting.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 
 class UpdatePhoto extends StatefulWidget {
-  const UpdatePhoto({super.key});
+  final String oldname ;
+  final String oldPhone ;
+  final String oldBd ;
+  const UpdatePhoto({super.key, required this.oldname, required this.oldPhone, required this.oldBd});
 
   @override
   State<UpdatePhoto> createState() => _UpdatePhotoState();
@@ -17,7 +20,6 @@ class _UpdatePhotoState extends State<UpdatePhoto> {
   ParentImage()async {
     final ImagePicker picker = ImagePicker();
     final XFile? ImageKid = await picker.pickImage(source: ImageSource.gallery);
-    //final XFile? photo = await picker.pickImage(source: ImageSource.camera);
     // if(ImageKid != null){
     //   file =File(ImageKid!.path);
     //   var Refstorage = FirebaseStorage.instance.ref(basename(ImageKid!.path));
@@ -28,14 +30,26 @@ class _UpdatePhotoState extends State<UpdatePhoto> {
     // setState(() {});
   }
 
+  UpDateProfile()async {
+    await FirebaseFirestore.instance
+        .collection('Parents').doc()
+        .update({
+      'Name': nameController.text,
+      'Phone': phoneController.text,
+      'BD': birthdayController.text,
+    });
+  }
+  @override
+  void initState() {
+    super.initState();
+    nameController.text = widget.oldname;
+    phoneController.text = widget.oldPhone;
+    birthdayController.text = widget.oldBd;
+  }
 
   var nameController = TextEditingController();
-  var emailController = TextEditingController();
   var phoneController = TextEditingController();
-  var passwordController = TextEditingController();
   var birthdayController = TextEditingController();
-  bool _IsShow =true;
-
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +58,8 @@ class _UpdatePhotoState extends State<UpdatePhoto> {
       body:SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Column( crossAxisAlignment: CrossAxisAlignment.start,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
                Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -119,32 +134,6 @@ class _UpdatePhotoState extends State<UpdatePhoto> {
               ),
               Padding(
                 padding: const EdgeInsets.all(10.0),
-                child: TextFormField(controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'The EmailAddress Must Contain @' ;
-                    }
-                    return null;
-                  },
-                  onFieldSubmitted: ( String value){
-                    print(value);
-                  },
-                  onChanged: ( String value){
-                    print(value);
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Email',
-                    hintText: 'Email',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
                 child: TextFormField(controller: phoneController,
                   keyboardType: TextInputType.phone,
                   validator: (value){
@@ -163,44 +152,6 @@ class _UpdatePhotoState extends State<UpdatePhoto> {
                     labelText: 'Phone',
                     hintText: ' Phone Number',
                     border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(obscureText: _IsShow,
-                  controller: passwordController,
-                  keyboardType: TextInputType.visiblePassword,
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'The Password Must Not Be Empty' ;
-                    }
-                    return null;
-                  },
-                  onFieldSubmitted: ( String value){
-                    print(value);
-                  },
-                  onChanged: ( String value){
-                    print(value);
-                  },
-                  decoration: InputDecoration(
-                    suffixIcon:IconButton(
-                      onPressed: (){
-                        setState(() {
-                          _IsShow = !_IsShow;
-                        });
-                      },
-                      icon: _IsShow ? const Icon(
-                        Icons.visibility_off,
-                      )
-                          : Icon(Icons.visibility),
-                    ),
-                    labelText: 'Password',
-                    hintText: ' Password',
-                    border: const OutlineInputBorder(),
                   ),
                 ),
               ),
@@ -240,7 +191,10 @@ class _UpdatePhotoState extends State<UpdatePhoto> {
                     color: defaultColor,
                     borderRadius: BorderRadius.circular(10),),
                   child: MaterialButton(
-                    onPressed: () {},
+                    onPressed: ()async {
+                      await UpDateProfile();
+                      Navigator.of(context).pop();
+                    },
                     child: const Text('Update',
                       style: TextStyle(
                         color: Colors.white,
@@ -248,7 +202,7 @@ class _UpdatePhotoState extends State<UpdatePhoto> {
                         fontSize: 25,
                       ),),),
                 ),
-              )
+              ),
             ],
           ),
         ),

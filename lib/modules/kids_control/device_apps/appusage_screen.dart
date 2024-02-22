@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 import 'package:usage_stats/usage_stats.dart';
+import 'package:widget_loading/widget_loading.dart';
 
 class AppUsage extends StatefulWidget {
   final Application application;
@@ -15,6 +16,7 @@ class AppUsage extends StatefulWidget {
 class _AppUsageState extends State<AppUsage> {
 
   UsageInfo? UsageApp;
+  bool _isnull =  true ;
 
   getAppUsage() async {
 
@@ -31,6 +33,7 @@ class _AppUsageState extends State<AppUsage> {
           });
         }
       });
+      _isnull = false ;
     }
   }
 
@@ -52,7 +55,8 @@ class _AppUsageState extends State<AppUsage> {
          ),
         ),
       ),
-      body: Column(
+      body: _isnull ? Center(child: WiperLoading(child: LinearProgressIndicator(),),)
+      : Column(
         children: [
           Center(
             child:Container(

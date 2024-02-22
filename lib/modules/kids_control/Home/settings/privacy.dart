@@ -70,7 +70,6 @@ class _PrivacyState extends State<Privacy> {
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Expanded(
@@ -98,13 +97,10 @@ class _PrivacyState extends State<Privacy> {
                           ),
                         ],
                       ),
-
-
                     ],
                   ),
                 ),
               ),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: Expanded(
@@ -132,8 +128,6 @@ class _PrivacyState extends State<Privacy> {
                           ),
                         ],
                       ),
-
-
                     ],
                   ),
                 ),
@@ -176,8 +170,6 @@ class _PrivacyState extends State<Privacy> {
                           ),
                         ],
                       ),
-
-
                     ],
                   ),
                 ),
@@ -210,13 +202,10 @@ class _PrivacyState extends State<Privacy> {
                           ),
                         ],
                       ),
-
-
                     ],
                   ),
                 ),
               ),
-
             ],
           ),
         ),

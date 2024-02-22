@@ -151,7 +151,11 @@ class _ProfileState extends State<Profile> {
                 ),
                 child: MaterialButton(
                   onPressed: (){
-                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => const UpdatePhoto()));
+                    Navigator.of(context).push(MaterialPageRoute(builder: (context) => UpdatePhoto(
+                      oldname: profileData[0]['Name'],
+                      oldPhone: profileData[0]['Phone'],
+                      oldBd: profileData[0]['BD'],
+                    )));
                   },
                   child: const Text(
                     'Edit Profile',
