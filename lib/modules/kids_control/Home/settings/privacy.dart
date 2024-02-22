@@ -200,7 +200,7 @@ class _PrivacyState extends State<Privacy> {
                           ),
                           Expanded(
                             child: Container(width:double.infinity ,
-                              child: const Text('To adding your kids : signin and go to the dashboard and tap on the floating button then fill the fields we need and submit the go to dashboard and you will see the kid added you can remove the kid or edit the data of your kid , you also can chat with your kids and see where are your kids stay .',
+                              child: const Text('To adding your kids :\nsignin and go to the dashboard and tap on the floating button then fill the fields we need and submit the go to dashboard and you will see the kid added you can remove the kid or edit the data of your kid , you also can chat with your kids and see where are your kids stay .',
                                 style: TextStyle(
                                   fontSize: 20,
                                   fontFamily: 'Default',
