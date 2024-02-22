@@ -1,5 +1,8 @@
+import 'package:fl_chart/fl_chart.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kidscontrol/modules/kids_control/Home/dashboard/addkid.dart';
+import 'package:kidscontrol/modules/kids_control/Home/dashboard/slectedkidscreen.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 
 class Dashboard extends StatefulWidget {
@@ -9,9 +12,20 @@ class Dashboard extends StatefulWidget {
   State<Dashboard> createState() => _DashboardState();
 }
 
+List<double> weeklytime = [
+  18.2,
+  20.2,
+  12.2,
+  10.2,
+  22.2,
+  45.2,
+];
+
+
 class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: (){
@@ -80,55 +94,47 @@ class _DashboardState extends State<Dashboard> {
           const SizedBox(
             height: 10.0,
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 15.0),
-                child: Container(
-
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20.0),
-                    border: Border.all(
-                      color: Colors.indigo,
-                      width: 3.0,
+          Container(
+            width: size.width,
+            height: size.height *0.22,
+            child: ListView.builder(
+              itemCount: 5,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context , index){
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.of(context).push(MaterialPageRoute(builder: (context)=> KidScrenen(KidsName: 'Mohamed salah',)));
+                      },
+                      child: Column(
+                        children: [
+                          CircleAvatar(
+                            radius: 40,
+                            backgroundImage: NetworkImage('https://st4.depositphotos.com/13108546/39498/i/450/depositphotos_394983578-stock-photo-smiling-redhead-boy-close-up.jpg'),
+                          ),
+                          SizedBox(height: 8,),
+                          Text("name of kid")
+                        ],
+                      ),
                     ),
-
-                  ),
-                  clipBehavior: Clip.antiAliasWithSaveLayer,
-                  child: const Image(
-                    image: NetworkImage('https://th.bing.com/th/id/R.53b3f36c6c0c68e0720ed40fcc37b781?rik=PA3fykNOBcbXYA&riu=http%3a%2f%2f4.bp.blogspot.com%2f-LBTpPgXexBM%2fTpTq_4uJuhI%2fAAAAAAAACl8%2fZZczMDdf40w%2fs1600%2f058.JPG&ehk=7pkhJ2%2bQ6i1m6j0nCnJ5c79pu2dAWOShWOz38fxeMbw%3d&risl=&pid=ImgRaw&r=0'),
-                    fit: BoxFit.fill,
-                    width: 100.0,
-                    height: 100.0,
-                  ),
-                ),
+                  );
+                },
+            ),
+          ),
+          SizedBox(height: 24,),
+          Container(
+            width: double.infinity,
+            height: 200,
+            child: BarChart(
+              BarChartData(
+                minY: 0.0,
+                maxY: 100.0,
               ),
-
-              const SizedBox(
-                width: 20.0,
-              ),
-
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15.0),
-                  border: Border.all(
-                    color: Colors.indigo,
-                    width: 3.0,
-                  ),
-                ),
-                clipBehavior: Clip.antiAliasWithSaveLayer,
-                child: const Image(
-                  image: NetworkImage('https://accesspsychology.ca/wp-content/uploads/2020/03/early.jpg'),
-                  fit: BoxFit.fill,
-                  width: 100.0,
-                  height: 100.0,
-                ),
-              ),
-
-            ],
-          )
-
+            swapAnimationDuration: Duration(milliseconds: 150),
+            swapAnimationCurve: Curves.linear,
+            ),
+          ),
         ],
             ),
       );

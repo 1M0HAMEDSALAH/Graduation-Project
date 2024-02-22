@@ -99,7 +99,7 @@ class _AppUsageState extends State<AppUsage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(" ${DateFormat('dd-mm-yyyy HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(UsageApp!.lastTimeUsed!)))}",
+                        Text(" ${DateFormat('dd-MM-yyyy HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(UsageApp!.lastTimeUsed!)))}",
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
@@ -126,7 +126,7 @@ class _AppUsageState extends State<AppUsage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(" ${DateFormat('dd-mm-yyyy HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(UsageApp!.firstTimeStamp!)))}",
+                        Text(" ${DateFormat('dd-MM-yyyy HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(UsageApp!.firstTimeStamp!)))}",
                           style: const TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,

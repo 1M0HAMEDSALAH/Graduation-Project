@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:kidscontrol/modules/kids_control/Home/settings/update_profile.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:widget_loading/widget_loading.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -14,7 +15,9 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
 
+
   List<Map<String, dynamic>> profileData = [];
+  bool _IsNull = true ;
 
   readData() async {
     QuerySnapshot querySnapshot = await FirebaseFirestore.instance
@@ -22,6 +25,7 @@ class _ProfileState extends State<Profile> {
         .where('Uid', isEqualTo: FirebaseAuth.instance.currentUser!.uid)
         .get();
     profileData = querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+    _IsNull = false ;
     setState(() {});
   }
 
@@ -37,7 +41,12 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
+      body: _IsNull ? Center(
+          child: WiperLoading(
+            child: LinearProgressIndicator(),
+              ),
+          )
+     : Column(
         children: [
           Row(
             children: [

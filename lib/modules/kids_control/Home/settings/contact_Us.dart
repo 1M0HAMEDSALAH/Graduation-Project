@@ -110,7 +110,6 @@ class _ContactUsState extends State<ContactUs> {
                 height: 12,
               ),
               Container(
-                color: Colors.pink[50] ,
                 width: double.infinity,
                 height: 120,
                 child: Column(
@@ -121,7 +120,7 @@ class _ContactUsState extends State<ContactUs> {
                   child: Row(
                     children: [
                       Icon(Icons.call,
-                          color: Colors.blue[600],
+                          color: defaultColor,
                           size: 30),
                       const SizedBox(
                         width: 12,
@@ -132,12 +131,9 @@ class _ContactUsState extends State<ContactUs> {
                           fontWeight: FontWeight.w700,
                         ),
                       ),
-
-
                     ],
                   ),
                 ),
-
                   const SizedBox(
                     width: 12,
                   ),
@@ -160,7 +156,6 @@ class _ContactUsState extends State<ContactUs> {
                       ),
                     ),
                   ),
-
                 ],
               ),
               ),

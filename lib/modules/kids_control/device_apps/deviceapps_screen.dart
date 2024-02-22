@@ -171,8 +171,6 @@ class _DeviceAppState extends State<DeviceApp> {
             return Container(
               height: double.infinity,
               child: ListView.builder(
-
-
                 shrinkWrap: true,
                 physics: const ScrollPhysics(),
                 itemCount: apps.length,
@@ -187,7 +185,6 @@ class _DeviceAppState extends State<DeviceApp> {
                         height: 50,
                         decoration:  BoxDecoration(
                           borderRadius: BorderRadius.circular(16.0),
-                          color: Colors.grey[200],
                         ),
                         child: ListTile(
                           leading: SizedBox(

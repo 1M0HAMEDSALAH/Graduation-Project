@@ -82,6 +82,25 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             GestureDetector(
+              onTap: (){
+                    showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                    return AlertDialog(
+                        title: Text('Change Language'),
+                        content: Text('We Are Sorry This Feature Not Implement Yet.'),
+                        actions: <Widget>[
+                        TextButton(
+                        onPressed: () {
+                            Navigator.of(context).pop();
+                            },
+                        child: Text('Close'),
+                        ),
+                        ],
+                    );
+                  },
+                );
+              },
               child: Container(
                 width: double.infinity,
                 height: 50,
@@ -151,6 +170,25 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             GestureDetector(
+              onTap: (){
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Change Language'),
+                      content: Text('We Are Sorry This Feature Not Implement Yet.'),
+                      actions: <Widget>[
+                        TextButton(
+                          onPressed: () {
+                            Navigator.of(context).pop();
+                          },
+                          child: Text('Close'),
+                        ),
+                      ],
+                    );
+                  },
+                );
+              },
               child: Container(
                 width: double.infinity,
                 height: 50,
