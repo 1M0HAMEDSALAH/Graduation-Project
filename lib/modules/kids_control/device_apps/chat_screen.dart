@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kidscontrol/shared/core/widgets/textformfield.dart';
+import 'package:kidscontrol/shared/styles/colors.dart';
 
 
 class ChatScreen extends StatefulWidget {
@@ -11,38 +12,41 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   TextEditingController textController = TextEditingController();
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title:const  Row(
-          children: [
-            SizedBox(
-              width: 50,
-              height: 50,
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Scaffold(
+        appBar: AppBar(
+          title:const  Row(
+            children: [
+              SizedBox(
+                width: 50,
+                height: 50,
+                child: CircleAvatar(
+                  backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
+                ),
               ),
-            ),
-            SizedBox(
-              width: 10,
-            ),
+              SizedBox(
+                width: 10,
+              ),
 
-            Text('Owais Mohamed',
-              style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400
+              Text('Owais Mohamed',
+                style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
+
         ),
-
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: const Column(
-          children: [
-           Spacer(),
-            SendMessage(),
-          ],
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: const Column(
+            children: [
+             Spacer(),
+              SendMessage(),
+            ],
+          ),
         ),
       ),
     );
@@ -56,24 +60,30 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
   var size = MediaQuery.of(context).size;
-      return Row(
-      children: [
-            Container(
-              height: 40,
-              decoration: BoxDecoration(
-                color: Colors.grey[200], borderRadius: BorderRadius.circular(20),
+      return Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+        children: [
+              Container(
+                height: 40,
+                decoration: BoxDecoration(
+                  color:defaultColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                width: size.width / 1.3,
+                child: TextFormFiled(
+                  hint: 'Message',
+                ),
+               ),
+              SizedBox(
+                  width: 10
               ),
-              width: size.width / 1.3,
-              child: TextFormFiled(
-                hint: 'Message',
+              const Icon(
+                  Icons.send,
+                  color: Colors.blue,
               ),
-             ),
-            SizedBox(width: 20),
-            const Icon(
-                Icons.send,
-                color: Colors.blue,
-            ),
-        ],
+          ],
+        ),
       );
   }
 }
