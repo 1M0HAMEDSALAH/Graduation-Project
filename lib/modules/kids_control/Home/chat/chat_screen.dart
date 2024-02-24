@@ -16,17 +16,20 @@ class Chats extends StatelessWidget {
               color: defaultColor, fontSize: 25, fontWeight: FontWeight.bold),
         ),
       ),
-      body: Container(
-        width: double.infinity,
-        padding: const EdgeInsets.only(left: 10, top: 10),
-        child: const Column(
-          children: [
-            ChatItems(),
-            SizedBox(
-              height: 20,
-            ),
-            ChatItems(),
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: Container(
+          width: double.infinity,
+          padding: const EdgeInsets.only(left: 10, top: 10),
+          child: const Column(
+            children: [
+              ChatItems(),
+              SizedBox(
+                height: 20,
+              ),
+              ChatItems(),
+            ],
+          ),
         ),
       ),
     );
@@ -51,7 +54,9 @@ class ChatItems extends StatelessWidget {
             radius: 30,
             backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
           ),
-          SizedBox(width: 10),
+          SizedBox(
+              width: 10
+          ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

@@ -23,65 +23,68 @@ class _HomePageState extends State<HomePage> {
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body:
-      screens[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.indigo,
-        elevation: 10.0,
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard_customize_outlined,
-              color: Colors.black87,
-              size: 35.0,),
-            activeIcon: Icon(Icons.dashboard_customize_outlined,
-                color: Colors.indigoAccent),
-            label: 'Dashboard',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.location_on_outlined,
-              color: Colors.black87,
-              size: 35.0,),
-            activeIcon: Icon(Icons.location_on_outlined,
-                color: Colors.indigoAccent),
-            label: 'location',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat_outlined,
-              color: Colors.black87,
-              size: 35.0,),
-            activeIcon: Icon(Icons.chat_outlined,
-                color: Colors.indigoAccent),
-            label: 'Chat',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_none_sharp,
-              color: Colors.black87,
-              size: 35.0,),
-
-            activeIcon: Icon(Icons.notifications_none_rounded,
-                color: Colors.indigoAccent),
-            label: 'Notification',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined,
-              color: Colors.black87,
-              size: 35.0,),
-
-            activeIcon: Icon(
-                Icons.settings_outlined,
-                color: Colors.indigoAccent,
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Scaffold(
+        body:
+        screens[currentIndex],
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.indigo,
+          elevation: 10.0,
+          currentIndex: currentIndex,
+          onTap: (index) {
+            setState(() {
+              currentIndex = index;
+            });
+          },
+          type: BottomNavigationBarType.fixed,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.dashboard_customize_outlined,
+                color: Colors.black87,
+                size: 35.0,),
+              activeIcon: Icon(Icons.dashboard_customize_outlined,
+                  color: Colors.indigoAccent),
+              label: 'Dashboard',
             ),
-            label: 'Settings',
-          ),
-        ],
+            BottomNavigationBarItem(
+              icon: Icon(Icons.location_on_outlined,
+                color: Colors.black87,
+                size: 35.0,),
+              activeIcon: Icon(Icons.location_on_outlined,
+                  color: Colors.indigoAccent),
+              label: 'location',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat_outlined,
+                color: Colors.black87,
+                size: 35.0,),
+              activeIcon: Icon(Icons.chat_outlined,
+                  color: Colors.indigoAccent),
+              label: 'Chat',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.notifications_none_sharp,
+                color: Colors.black87,
+                size: 35.0,),
+
+              activeIcon: Icon(Icons.notifications_none_rounded,
+                  color: Colors.indigoAccent),
+              label: 'Notification',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.settings_outlined,
+                color: Colors.black87,
+                size: 35.0,),
+
+              activeIcon: Icon(
+                  Icons.settings_outlined,
+                  color: Colors.indigoAccent,
+              ),
+              label: 'Settings',
+            ),
+          ],
+        ),
       ),
     );
   }

@@ -27,142 +27,140 @@ class _ContactUsState extends State<ContactUs> {
         centerTitle: true,
       ),
       body:SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(15.0),
-          child: Column(
-            children: [
-              Center(
-                child: Image.asset('assets/images/contactus.png',
-                  width: 200,
-                  height: 200,
+        child: Column(
+          children: [
+            Center(
+              child: Image.asset('assets/images/contactus.png',
+                width: 200,
+                height: 200,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: TextFormField(controller: nameController,
+                keyboardType: TextInputType.name,
+                validator: (value){
+                  if(value!.isEmpty){
+                    return 'The Name Must Not Be Empty' ;
+                  }
+                  return null;
+                },
+                onFieldSubmitted: ( String value){
+                  print(value);
+                },
+                onChanged: ( String value){
+                  print(value);
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Name',
+                  hintText: ' Enter Your Name',
+                  border: OutlineInputBorder(),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(controller: nameController,
-                  keyboardType: TextInputType.name,
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'The Name Must Not Be Empty' ;
-                    }
-                    return null;
-                  },
-                  onFieldSubmitted: ( String value){
-                    print(value);
-                  },
-                  onChanged: ( String value){
-                    print(value);
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'Name',
-                    hintText: ' Enter Your Name',
-                    border: OutlineInputBorder(),
-                  ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: TextFormField(controller: emailController,
+                keyboardType: TextInputType.emailAddress,
+                validator: (value){
+                  if(value!.isEmpty){
+                    return 'The EmailAddress Must Contain @' ;
+                  }
+                  return null;
+                },
+                onFieldSubmitted: ( String value){
+                  print(value);
+                },
+                onChanged: ( String value){
+                  print(value);
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Email',
+                  hintText: ' Enter Your Valid Email',
+                  border: OutlineInputBorder(),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(controller: emailController,
-                  keyboardType: TextInputType.emailAddress,
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'The EmailAddress Must Contain @' ;
-                    }
-                    return null;
-                  },
-                  onFieldSubmitted: ( String value){
-                    print(value);
-                  },
-                  onChanged: ( String value){
-                    print(value);
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    hintText: ' Enter Your Valid Email',
-                    border: OutlineInputBorder(),
-                  ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: TextFormField(
+                maxLines: 5,
+                keyboardType: TextInputType.text,
+                validator: (value){
+                  if(value!.isEmpty){
+                    return 'The Square Must  Not Be Empty' ;
+                  }
+                  return null;
+                },
+                onFieldSubmitted: ( String value){
+                  print(value);
+                },
+                onChanged: ( String value){
+                  print(value);
+                },
+                decoration: const InputDecoration(
+                  labelText: 'Your Opinion',
+                  border: OutlineInputBorder(),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: TextFormField(
-                  maxLines: 5,
-                  keyboardType: TextInputType.text,
-                  validator: (value){
-                    if(value!.isEmpty){
-                      return 'The Square Must  Not Be Empty' ;
-                    }
-                    return null;
-                  },
-                  onFieldSubmitted: ( String value){
-                    print(value);
-                  },
-                  onChanged: ( String value){
-                    print(value);
-                  },
-                  decoration: const InputDecoration(
-                    labelText: 'Your Opinion',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 12,
-              ),
-              Container(
-                width: double.infinity,
-                height: 120,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                  padding: const EdgeInsets.only(left: 15,top: 10),
-                  child: Row(
-                    children: [
-                      Icon(Icons.call,
-                          color: defaultColor,
-                          size: 30),
-                      const SizedBox(
-                        width: 12,
-                      ),
-                      const Text('Call Us :',
-                        style: TextStyle(
-                          fontSize: 25,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 45),
-                    child: Text('+20 1234567890',
+            ),
+            const SizedBox(
+              height: 12,
+            ),
+            Container(
+              width: double.infinity,
+              height: 120,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                padding: const EdgeInsets.only(left: 15,top: 10),
+                child: Row(
+                  children: [
+                    Icon(Icons.call,
+                        color: defaultColor,
+                        size: 30),
+                    const SizedBox(
+                      width: 12,
+                    ),
+                    const Text('Call Us :',
                       style: TextStyle(
-                        fontSize: 17,
+                        fontSize: 25,
+                        fontWeight: FontWeight.w700,
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 12,
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 45),
-                    child: Text('KidsControl2024@gmail.com',
-                      style: TextStyle(
-                        fontSize: 17,
-                      ),
+                  ],
+                ),
+              ),
+                const SizedBox(
+                  width: 12,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 45),
+                  child: Text('+20 1234567890',
+                    style: TextStyle(
+                      fontSize: 17,
                     ),
                   ),
-                ],
-              ),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Center(
+                ),
+                const SizedBox(
+                  width: 12,
+                ),
+                const Padding(
+                  padding: EdgeInsets.only(left: 45),
+                  child: Text('KidsControl2024@gmail.com',
+                    style: TextStyle(
+                      fontSize: 17,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Center(
                 child: Container(
                   width: 300,
                   decoration:  BoxDecoration(
@@ -178,10 +176,9 @@ class _ContactUsState extends State<ContactUs> {
                         fontSize: 25,
                       ),),),
                 ),
-              )
-            ],
-          ),
-
+              ),
+            )
+          ],
         ),
 
       ),

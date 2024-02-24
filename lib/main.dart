@@ -57,18 +57,18 @@ class _SplachState extends State<Splach> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 300,
-              height: 300,
+              width: 250,
+              height: 250,
               child: Image.asset('assets/images/Family-pana.png',
               ),
             ),
             const SizedBox(
-              height: 20,
+              height: 10,
             ),
             const Text("Kids Control",
             style: TextStyle(
               color:defaultColor,
-              fontSize: 35,
+              fontSize: 30,
               fontWeight:FontWeight.bold,
               fontFamily: 'Default',
             ),
