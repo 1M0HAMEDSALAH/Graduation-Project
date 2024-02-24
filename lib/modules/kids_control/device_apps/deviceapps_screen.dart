@@ -5,6 +5,7 @@ import 'package:kidscontrol/modules/kids_control/device_apps/help_screen.dart';
 import 'package:kidscontrol/modules/kids_control/device_apps/notification_screen.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 import 'package:usage_stats/usage_stats.dart';
+import 'package:widget_loading/widget_loading.dart';
 import 'appusage_screen.dart';
 
 
@@ -165,7 +166,7 @@ class _DeviceAppState extends State<DeviceApp> {
           ),
           builder: (context, snapshot) {
             if(!snapshot.hasData){
-              return const Center(child: Text("Loading..."));
+              return Center(child: WiperLoading(child: LinearProgressIndicator(),),);
             }
             List<Application> apps = snapshot.data as List<Application>;
             return Container(

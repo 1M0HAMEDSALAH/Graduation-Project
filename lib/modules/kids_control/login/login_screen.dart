@@ -222,10 +222,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           onPressed: () {
                             _signInWithGoogle();
                           },
-                          child: CircleAvatar(
-                            radius: 22,
-                            backgroundImage: AssetImage('assets/images/GoogleIcon.png'),
-                          ),
+                          child: Image.asset('assets/images/GoogleIcon.png',width: 45.0,height: 45.0,),
                         ),
                       ],
                     ),
