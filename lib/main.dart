@@ -28,20 +28,20 @@ class MyApp extends StatelessWidget {
       home: (FirebaseAuth.instance.currentUser != null &&
           FirebaseAuth.instance.currentUser!.emailVerified)
           ? HomePage()
-          : const Splach(),
+          : const Splash(),
     );
   }
 }
 
 
-class Splach extends StatefulWidget {
-  const Splach({super.key});
+class Splash extends StatefulWidget {
+  const Splash({super.key});
 
   @override
-  State<Splach> createState() => _SplachState();
+  State<Splash> createState() => _SplashState();
 }
 
-class _SplachState extends State<Splach> {
+class _SplashState extends State<Splash> {
   void initState(){
     super.initState();
     Future.delayed( const Duration(seconds: 3),(){
