@@ -32,7 +32,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
 class Splash extends StatefulWidget {
   const Splash({super.key});
 

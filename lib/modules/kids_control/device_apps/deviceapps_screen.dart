@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_apps/device_apps.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:usage_stats/usage_stats.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 import 'package:widget_loading/widget_loading.dart';
@@ -24,7 +26,21 @@ class _DeviceAppState extends State<DeviceApp> {
   // StreamSubscription<Position>? positionStream ;
   // double? latiude;
   // double? logtiude;
-  //
+
+
+  @override
+  void setState(VoidCallback fn) {
+    UsageApp;
+    super.setState(fn);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getApps();
+    //_getlocation();
+  }
+
   // _getlocation() async {
   //   bool serviceEnabled;
   //   LocationPermission permission;
@@ -72,19 +88,6 @@ class _DeviceAppState extends State<DeviceApp> {
   //   }
   //
   // }
-
-  @override
-  void setState(VoidCallback fn) {
-    UsageApp;
-    super.setState(fn);
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getApps();
-    //_getlocation();
-  }
 
   getApps() async {
     UsageStats.grantUsagePermission();
@@ -139,8 +142,8 @@ class _DeviceAppState extends State<DeviceApp> {
         .catchError((error) => print("Failed to add Or Updated apps: $error"));
   }
 
-// static const TextStyle optionStyle =
-//     TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.blue);
+static const TextStyle optionStyle =
+    TextStyle(fontSize: 30, fontWeight: FontWeight.bold, color: Colors.blue);
 
     @override
     Widget build(BuildContext context) {
@@ -298,8 +301,8 @@ class _DeviceAppState extends State<DeviceApp> {
                     .doc('G3dFeGPoMNUFKu9iSvag')
                     .set({
                   'ApplicationsStatus':  appsData,
-                  //'logtiude': logtiude,
-                  //'latiude': latiude,
+                  // 'logtiude': logtiude,
+                  // 'latiude': latiude,
                 }).then((value) => print("Apps added Or Updated to Firestore successfully"))
                     .catchError((error) => print("Failed to add Or Updated apps: $error"));
               }
