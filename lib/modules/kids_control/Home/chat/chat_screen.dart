@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/modules/kids_control/Home/chat/chat.dart'; // استدعاء الصفحة التي تحتوي على ChatWidget
+import 'package:kidscontrol/modules/kids_control/Home/chat/chat.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 
 class Chats extends StatelessWidget {
@@ -45,7 +45,6 @@ class ChatItems extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        // استخدم Navigator.push بدلاً من Navigator.of(context).push
         Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen()));
       },
       child: Row(
