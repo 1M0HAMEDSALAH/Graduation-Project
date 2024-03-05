@@ -1,8 +1,6 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:device_apps/device_apps.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:usage_stats/usage_stats.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 import 'package:widget_loading/widget_loading.dart';
