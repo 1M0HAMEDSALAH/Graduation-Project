@@ -1,107 +1,205 @@
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/shared/core/widgets/chat_colu.dart';
-import 'package:kidscontrol/shared/core/widgets/textformfield.dart';
-import 'package:kidscontrol/shared/model/chat_model.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
+late User signedInUser;
 
-// ignore: use_key_in_widget_constructors
-class ChatWidget extends StatelessWidget {
-  final List<Message> messages = [
-    Message(sender: 'Me', text: 'Hello!'),
-    Message(sender: 'Friend', text: 'Hi there!'),
-    Message(sender: 'Me', text: 'How are you?'),
-    Message(sender: 'Friend', text: 'I am good, thanks!'),
-    Message(sender: 'Friend', text: 'And you?'),
-    Message(sender: 'Me', text: 'I am doing well too.'),
-  ];
+class ChatScreen extends StatefulWidget {
+  static const String screenRoute = 'chat_screen';
+
+  const ChatScreen({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 40.0, left: 10),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Icon(
-                    Icons.arrow_back,
-                    size: 30,
-                  ),
-                ),
-                const SizedBox(width: 5),
-                const CircleAvatar(
-                  radius: 20,
-                  backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
-                ),
-                const SizedBox(width: 10),
-                const Text(
-                  'Laila Mohammeed',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                ),
-                const SizedBox(width: 40),
-
-          ],
-        ),
-            Expanded(
-              child: ListView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: messages.length,
-                itemBuilder: (BuildContext context, int index) {
-                  final message = messages[index];
-                  return MessageBubble(
-                    sender: message.sender,
-                    text: message.text,
-                    isMe: message.sender == 'Me',
-                  );
-                },
-              ),
-            ),
-            const SendMessage(),
-            const SizedBox(height: 20)
-      ]),
-    )
-    );
-  }
+  _ChatScreenState createState() => _ChatScreenState();
 }
 
-class SendMessage extends StatelessWidget {
-  const SendMessage({
-    super.key,
-  });
+class _ChatScreenState extends State<ChatScreen> {
+  final messageTextController = TextEditingController();
+  final _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  String? messageText;
+
+  @override
+  void initState() {
+    super.initState();
+    getCurrentUser();
+  }
+
+  void getCurrentUser() {
+    try {
+      final user = _auth.currentUser;
+      if (user != null) {
+        signedInUser = user;
+        print(signedInUser.email);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          "Chat",
+          style: TextStyle(
+            color: Colors.blue,
+            fontSize: 30,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
+      ),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: _firestore.collection('Parents').orderBy('time').snapshots(),
+                builder: (context, snapshot) {
+                  if(snapshot.connectionState == ConnectionState.waiting) {
+                    return Center(
+                      child: CircularProgressIndicator(
+                        backgroundColor: Colors.blue,
+                      ),
+                    );
+                  }
+                  if (!snapshot.hasData || snapshot.data!.docs.isEmpty) {
+                    return Center(
+                      child: Text("No messages yet!"),
+                    );
+                  }
+                  return buildMessagesList(snapshot.data!.docs.toList().reversed);
+                },
+              ),
+            ),
+            buildMessageInput(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  // بناء قائمة الرسائل
+  Widget buildMessagesList(Iterable<QueryDocumentSnapshot> messages) {
+    return ListView.builder(
+      reverse: true,
+      itemCount: messages.length,
+      itemBuilder: (context, index) {
+        final message = messages.elementAt(index);
+        final messegeText = message.get('text');
+        final messegesender = message.get('sender');
+        final currentUser = signedInUser.email;
+
+        return MessageLine(
+          sender: messegesender,
+          text: messegeText,
+          isMe: currentUser == messegesender,
+        );
+      },
+    );
+  }
+
+  // بناء مربع إدخال الرسائل
+  Widget buildMessageInput() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          Container(
-            height: 40,
-            decoration: BoxDecoration(
-                color: defaultColor,
-
-                borderRadius: BorderRadius.circular(20)
+          Flexible(
+            child: Container(
+              height: 40,
+              decoration: BoxDecoration(
+                color: Colors.black12,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: TextFormField(
+                controller: messageTextController,
+                onChanged: (value) {
+                  messageText = value;
+                },
+                decoration: const InputDecoration(
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 10,
+                    horizontal: 20,
+                  ),
+                  hintText: 'Write your message here...',
+                  border: InputBorder.none,
+                ),
+              ),
             ),
-            width: size.width / 1.3,
-            child: TextFormFiled(
-              hint: 'Message',
+          ),
+          const SizedBox(width: 10),
+          IconButton(
+            onPressed: () {
+              messageTextController.clear();
+              _firestore.collection('messages').add({
+                'text': messageText,
+                'sender': signedInUser.email,
+                'time' : FieldValue.serverTimestamp(),
+              });
+            },
+            icon: const Icon(
+              Icons.send,
+              color: Colors.blue,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
+// بنية الرسالة المستخدمة في قائمة الرسائل
+class MessageLine extends StatelessWidget {
+  const MessageLine({this.text, this.sender, required this.isMe, Key? key}) :
+        super(key: key);
+
+  final String? sender;
+  final String? text;
+  final bool isMe;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment: isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$sender',
+            style: TextStyle(fontSize: 12, color: Colors.black45),
+          ),
+          Material(
+            elevation: 5,
+            borderRadius: isMe ? BorderRadius.only(
+              topLeft: Radius.circular(30),
+              bottomLeft: Radius.circular(30),
+              bottomRight: Radius.circular(30),
             )
-          ),
-          SizedBox(
-              width: 10
-          ),
-          const Icon(
-            Icons.send,
-            color: Colors.blue,
+                :BorderRadius.only(
+              topRight: Radius.circular(30),
+              bottomLeft: Radius.circular(30),
+              bottomRight: Radius.circular(30),
+            ),
+
+            color: isMe ? Colors.blue[800] : Colors.white,
+
+
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: Text(
+                '$text',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: isMe ? Colors.white : Colors.black  ),
+              ),
+            ),
           ),
         ],
       ),

@@ -21,20 +21,6 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
   List<Map<String, dynamic>> KidAuth = [];
   bool _isNull = false;
 
-  _kidAuth() async {
-    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
-        .collection('KidsSide')
-        .where('Uid',isEqualTo: 'MWV9RiVxbHP2q6HqMjMTB6J0dVB3')
-        .get();
-    KidAuth = querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
-      setState(() {});
-  }
-
-  @override
-  void initState() {
-    _kidAuth();
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -135,14 +121,16 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                   ),
                   child: MaterialButton(
                     onPressed: ()async {
-                      await _kidAuth();
-                      if (KidAuth.isNotEmpty) {
+                      var res=await FirebaseFirestore.instance
+                          .collection('KidsSide')
+                          .doc(idController.text).get();
+                      print(res.exists);
+                      if (res.exists) {
                         if (formkey.currentState!.validate()) {
-                          if (KidAuth[0]['Id'].toString() == idController.text &&
-                              KidAuth[0]['FirstName'].toString() == usernameController.text) {
+                          if (res['FirstName'].toString() == usernameController.text) {
                             Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
-                                    builder: (context) => DeviceApp(datakid: KidAuth[0],)),
+                                    builder: (context) => DeviceApp(datakid: res,)),
                                     (route) => false);
                           } else {
                             Fluttertoast.showToast(

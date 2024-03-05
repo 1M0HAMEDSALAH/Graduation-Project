@@ -256,7 +256,7 @@ class _AddKidState extends State<AddKid> {
                         color: Colors.white
                     ),
                   ),
-                  onPressed: ()async{
+                  onPressed: ()async {
                     await _Kidinfo();
                     Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> HomePage() ), (route) => false);
                   },

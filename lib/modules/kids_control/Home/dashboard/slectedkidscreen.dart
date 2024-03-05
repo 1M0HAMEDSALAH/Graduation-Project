@@ -16,7 +16,7 @@ class _KidScrenenState extends State<KidScrenen> {
 
 
   static const TextStyle optionStyle = TextStyle(
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: FontWeight.bold,
     color: defaultColor,
     fontFamily: 'default',

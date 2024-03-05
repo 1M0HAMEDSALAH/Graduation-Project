@@ -18,11 +18,13 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
 
-  CollectionReference parent = FirebaseFirestore.instance.collection('Parents');
 
-  _addUser() {
-    return parent
-        .add({
+  _addUser()async {
+    return await FirebaseFirestore
+        .instance
+        .collection('Parents')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({
       'Name': nameController.text,
       'Email': emailController.text,
       'Password': passwordController.text ,

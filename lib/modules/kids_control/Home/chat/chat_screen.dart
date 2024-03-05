@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/modules/kids_control/Home/chat/chat.dart';
+import 'package:kidscontrol/modules/kids_control/Home/chat/chat.dart'; // استدعاء الصفحة التي تحتوي على ChatWidget
 import 'package:kidscontrol/shared/styles/colors.dart';
 
 class Chats extends StatelessWidget {
-  const Chats({super.key});
+  const Chats({Key? key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,10 +21,10 @@ class Chats extends StatelessWidget {
         child: Container(
           width: double.infinity,
           padding: const EdgeInsets.only(left: 10, top: 10),
-          child: const Column(
+          child: Column(
             children: [
               ChatItems(),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               ChatItems(),
@@ -38,23 +38,23 @@ class Chats extends StatelessWidget {
 
 class ChatItems extends StatelessWidget {
   const ChatItems({
-    super.key,
+    Key? key,
   });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => ChatWidget()));
+        // استخدم Navigator.push بدلاً من Navigator.of(context).push
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen()));
       },
-      child: const Row(
+      child: Row(
         children: [
           CircleAvatar(
             radius: 30,
             backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
           ),
-          SizedBox(
+          const SizedBox(
               width: 10
           ),
           Column(
@@ -62,23 +62,23 @@ class ChatItems extends StatelessWidget {
             children: [
               Text(
                 "Laila Mohammed",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 3),
+              const SizedBox(height: 3),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
                     "go to bed",
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 16,
                         fontWeight: FontWeight.bold),
                   ),
-                  SizedBox(width: 120),
+                  const SizedBox(width: 120),
                   Text(
                     "10:30 PM",
-                    style: TextStyle(
+                    style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 14,
                         fontWeight: FontWeight.bold),
