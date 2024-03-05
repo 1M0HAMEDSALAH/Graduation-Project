@@ -49,12 +49,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         title:const Text(
           "Sign Up",
           style: TextStyle(
-            // shadows: [
-            //   Shadow(
-            //     color: Colors.black38,
-            //     offset: Offset(2.0, 2.0),
-            //   ),
-            // ],
             fontSize: 25,
             fontWeight: FontWeight.bold,
             color: defaultColor,

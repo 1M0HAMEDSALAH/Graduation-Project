@@ -1,8 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kidscontrol/modules/kids_control/Home/dashboard/addkid.dart';
 import 'package:kidscontrol/modules/kids_control/Home/dashboard/slectedkidscreen.dart';
+import 'package:kidscontrol/modules/kids_control/Home/homepage.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 
 class Dashboard extends StatefulWidget {
@@ -12,36 +14,52 @@ class Dashboard extends StatefulWidget {
   State<Dashboard> createState() => _DashboardState();
 }
 
-List<double> weeklytime = [
-  18.2,
-  20.2,
-  12.2,
-  10.2,
-  22.2,
-  45.2,
-];
-
-
 class _DashboardState extends State<Dashboard> {
+
+
+  List<QueryDocumentSnapshot> KidInfo = [];
+
+  _Getkids()async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection("KidsSide")
+        .where("Uid" ,isEqualTo: FirebaseAuth.instance.currentUser!.uid)
+        .get();
+    KidInfo.addAll(querySnapshot.docs);
+    setState(() {});
+  }
+
+  static const TextStyle optionStyle = TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+      color: defaultColor,
+    fontFamily: 'default',
+  );
+
+  @override
+void initState() {
+  _Getkids();
+  super.initState();
+}
+
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Scaffold(
-        floatingActionButton: FloatingActionButton(
-          onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  const AddKid()));
-          },
-          child:const Icon(
-            Icons.add,
-            color: Colors.white,
-            size: 34,
-          ),
-          backgroundColor: Colors.indigoAccent,
-          shape: const CircleBorder(),
+    return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  const AddKid()));
+        },
+        child:const Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 34,
         ),
-          body: Column(
+        backgroundColor: Colors.indigoAccent,
+        shape: const CircleBorder(),
+      ),
+        body: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -54,6 +72,7 @@ class _DashboardState extends State<Dashboard> {
                       fontWeight: FontWeight.bold,
                       fontSize: 50.0,
                       color: defaultColor,
+                      fontFamily: 'default',
                     ),
                   ),
                   SizedBox(
@@ -77,6 +96,7 @@ class _DashboardState extends State<Dashboard> {
                   fontSize: 30.0,
                   color: defaultColor,
                   fontWeight: FontWeight.w500,
+                  fontFamily: 'default',
                 ),
               ),
             ),
@@ -87,6 +107,7 @@ class _DashboardState extends State<Dashboard> {
               padding: const EdgeInsets.only(left: 15.0),
               child: Text('Choose child to get more info',
                 style: TextStyle(
+                  fontFamily: 'default',
                   fontSize: 16.0,
                   color: Colors.grey.withOpacity(.5),
                   fontWeight: FontWeight.w600,
@@ -100,23 +121,42 @@ class _DashboardState extends State<Dashboard> {
               width: size.width,
               height: size.height *0.22,
               child: ListView.builder(
-                itemCount: 5,
+                itemCount: KidInfo.length,
                   scrollDirection: Axis.horizontal,
                   itemBuilder: (context , index){
                     return Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: GestureDetector(
+                        onLongPress: (){
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return AlertDialog(
+                                title: Text('Delete Kid'),
+                                content: Text('Are You Sure To Delete Your Kid.'),
+                                actions: <Widget>[
+                                  TextButton(
+                                    onPressed: ()async {
+                                      await FirebaseFirestore.instance.collection('KidsSide').doc(KidInfo[index].id).delete();
+                                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> HomePage()), (route) => false);},
+                                    child: Text('Delete anyway😞'),
+                                  ),
+                                ],
+                              );
+                            },
+                          );
+                        },
                         onTap: (){
-                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> KidScrenen(KidsName: 'Mohamed salah',)));
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=> KidScrenen(ForMoreInfo: KidInfo[index],KidsName: KidInfo[index]['FirstName'],)));
                         },
                         child: Column(
                           children: [
                             CircleAvatar(
                               radius: 40,
-                              backgroundImage: NetworkImage('https://st4.depositphotos.com/13108546/39498/i/450/depositphotos_394983578-stock-photo-smiling-redhead-boy-close-up.jpg'),
+                              backgroundImage: NetworkImage(KidInfo[index]['Image']),
                             ),
                             SizedBox(height: 8,),
-                            Text("name of kid")
+                            Text(KidInfo[index]['FirstName'],style: optionStyle,),
                           ],
                         ),
                       ),
@@ -140,6 +180,6 @@ class _DashboardState extends State<Dashboard> {
           ],
               ),
         ),
-    );
+      );
   }
 }

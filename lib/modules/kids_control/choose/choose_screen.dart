@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/modules/kids_control/child_side/childside_screen.dart';
 import 'package:kidscontrol/modules/kids_control/login/login_screen.dart';
 import 'package:kidscontrol/shared/componants/componants.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
+
+import '../KidSignIn/childside_screen.dart';
 
 
 class ChooseScreen extends StatelessWidget {

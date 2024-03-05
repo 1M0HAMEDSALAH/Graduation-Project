@@ -1,11 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
-import '../../../shared/componants/componants.dart';
+import 'package:widget_loading/widget_loading.dart';
 import '../device_apps/deviceapps_screen.dart';
 
 class ChildSideScreen extends StatefulWidget {
-  const ChildSideScreen({super.key});
+  const ChildSideScreen({Key? key}) : super(key: key);
 
   @override
   State<ChildSideScreen> createState() => _ChildSideScreenState();
@@ -17,22 +18,32 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController idController = TextEditingController();
 
+  List<Map<String, dynamic>> KidAuth = [];
+  bool _isNull = false;
+
+  _kidAuth() async {
+    QuerySnapshot querySnapshot = await FirebaseFirestore.instance
+        .collection('KidsSide')
+        .where('Uid',isEqualTo: 'MWV9RiVxbHP2q6HqMjMTB6J0dVB3')
+        .get();
+    KidAuth = querySnapshot.docs.map((doc) => doc.data() as Map<String, dynamic>).toList();
+      setState(() {});
+  }
+
+  @override
+  void initState() {
+    _kidAuth();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title:const Text(
+        title: const Text(
           "Kids side",
           style: TextStyle(
-            // shadows: [
-            //   Shadow(
-            //     color: Colors.black38,
-            //     offset: Offset(2.0, 2.0),
-            //   ),
-            // ],
             fontSize: 25,
             fontWeight: FontWeight.bold,
             color: defaultColor,
@@ -45,13 +56,19 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
           key: formkey,
           child: Padding(
             padding: const EdgeInsets.all(12.0),
-            child: Column(
+            child: _isNull
+                ? Center(
+              child: WiperLoading(
+                child: LinearProgressIndicator(),
+              ),
+            )
+                : Column(
               children: [
                 const SizedBox(
                   height: 100,
                 ),
                 Center(
-                  child:Container(
+                  child: Container(
                       height: 220,
                       child: Image.asset("assets/images/Flying kite-amico.png")),
                 ),
@@ -60,8 +77,8 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                   child: TextFormField(
                     controller: usernameController,
                     keyboardType: TextInputType.visiblePassword,
-                    validator: (value){
-                      if(value!.isEmpty){
+                    validator: (value) {
+                      if (value!.isEmpty) {
                         return 'The Password Must Not Be Empty';
                       }
                       return null;
@@ -72,7 +89,7 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                     onChanged: (String value) {
                       print(value);
                     },
-                    decoration:  const  InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Name',
                       hintText: '  User Name',
                       border: OutlineInputBorder(),
@@ -87,8 +104,8 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                   child: TextFormField(
                     controller: idController,
                     keyboardType: TextInputType.visiblePassword,
-                    validator: (value){
-                      if(value!.isEmpty){
+                    validator: (value) {
+                      if (value!.isEmpty) {
                         return 'The Password Must Not Be Empty';
                       }
                       return null;
@@ -99,7 +116,7 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                     onChanged: (String value) {
                       print(value);
                     },
-                    decoration:  const  InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'ID',
                       hintText: ' Child ID',
                       border: OutlineInputBorder(),
@@ -112,40 +129,46 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                 Container(
                   width: 300,
                   height: 43,
-                  decoration:  BoxDecoration(
+                  decoration: BoxDecoration(
                     color: defaultColor,
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: MaterialButton(
-                    onPressed: (){
-                      if(formkey.currentState!.validate()){
-                        print(usernameController.text);
-                        print(idController.text);
-                        Fluttertoast.showToast(
-                            msg: "Welcome ${usernameController.text}",
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: defaultColor,
-                            textColor: Colors.white,
-                            fontSize: 16.0
-
-                        );
-                        navigateTo(context,const DeviceApp(),);
-                      }
-                      else{
-                        Fluttertoast.showToast(
-                            msg: "validate Require",
+                    onPressed: ()async {
+                      await _kidAuth();
+                      if (KidAuth.isNotEmpty) {
+                        if (formkey.currentState!.validate()) {
+                          if (KidAuth[0]['Id'].toString() == idController.text &&
+                              KidAuth[0]['FirstName'].toString() == usernameController.text) {
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => DeviceApp(datakid: KidAuth[0],)),
+                                    (route) => false);
+                          } else {
+                            Fluttertoast.showToast(
+                              msg: "The Username Or Id is Wrong",
+                              toastLength: Toast.LENGTH_SHORT,
+                              gravity: ToastGravity.BOTTOM,
+                              timeInSecForIosWeb: 1,
+                              backgroundColor: Colors.red,
+                              textColor: Colors.white,
+                              fontSize: 16.0,
+                            );
+                          }
+                        } else {
+                          Fluttertoast.showToast(
+                            msg: "Validation Required",
                             toastLength: Toast.LENGTH_SHORT,
                             gravity: ToastGravity.BOTTOM,
                             timeInSecForIosWeb: 1,
                             backgroundColor: Colors.red,
                             textColor: Colors.white,
-                            fontSize: 16.0
-                        );
+                            fontSize: 16.0,
+                          );
+                        }
                       }
                     },
-                    child:  const  Text(
+                    child: const Text(
                       'Sign In',
                       style: TextStyle(
                         color: Colors.white,

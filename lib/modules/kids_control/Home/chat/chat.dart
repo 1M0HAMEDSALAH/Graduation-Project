@@ -18,58 +18,55 @@ class ChatWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.only(top: 40.0, left: 10),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Icon(
-                      Icons.arrow_back,
-                      size: 30,
-                    ),
-                  ),
-                  const SizedBox(width: 5),
-                  const CircleAvatar(
-                    radius: 20,
-                    backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
-                  ),
-                  const SizedBox(width: 10),
-                  const Text(
-                    'Laila Mohammeed',
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
-                  ),
-                  const SizedBox(width: 40),
-
-            ],
-          ),
-              Expanded(
-                child: ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: messages.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    final message = messages[index];
-                    return MessageBubble(
-                      sender: message.sender,
-                      text: message.text,
-                      isMe: message.sender == 'Me',
-                    );
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(top: 40.0, left: 10),
+        child: Column(
+          children: [
+            Row(
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.pop(context);
                   },
+                  child: const Icon(
+                    Icons.arrow_back,
+                    size: 30,
+                  ),
                 ),
+                const SizedBox(width: 5),
+                const CircleAvatar(
+                  radius: 20,
+                  backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
+                ),
+                const SizedBox(width: 10),
+                const Text(
+                  'Laila Mohammeed',
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+                ),
+                const SizedBox(width: 40),
+
+          ],
+        ),
+            Expanded(
+              child: ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: messages.length,
+                itemBuilder: (BuildContext context, int index) {
+                  final message = messages[index];
+                  return MessageBubble(
+                    sender: message.sender,
+                    text: message.text,
+                    isMe: message.sender == 'Me',
+                  );
+                },
               ),
-              const SendMessage(),
-              const SizedBox(height: 20)
-        ]),
-      )
-      ),
+            ),
+            const SendMessage(),
+            const SizedBox(height: 20)
+      ]),
+    )
     );
   }
 }

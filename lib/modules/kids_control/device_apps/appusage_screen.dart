@@ -23,7 +23,6 @@ class _AppUsageState extends State<AppUsage> {
     DateTime endDate = DateTime.now();
     DateTime startDate = DateTime(endDate.year, endDate.month, endDate.day, 0, 0, 0);
 
-    // grant usage permission - opens Usage Settings
     List<UsageInfo> usageStats = await UsageStats.queryUsageStats(startDate, endDate);
     if(usageStats.isNotEmpty){
       usageStats.forEach((element) {
@@ -149,15 +148,3 @@ class _AppUsageState extends State<AppUsage> {
     );
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-

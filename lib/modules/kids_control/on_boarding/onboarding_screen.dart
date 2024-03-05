@@ -84,7 +84,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               Row(
                mainAxisAlignment: MainAxisAlignment.center,
                children: [
-                 Text('${model!.title1}',
+                 Text('${model.title1}',
                    style: const  TextStyle(
                      color: defaultColor,
                      fontWeight: FontWeight.bold,
@@ -97,7 +97,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
              Row(
                mainAxisAlignment: MainAxisAlignment.center,
                children: [
-                  Text('${model!.title2}',
+                  Text('${model.title2}',
                    style: const TextStyle(
                      color: defaultColor,
                      fontWeight: FontWeight.bold,

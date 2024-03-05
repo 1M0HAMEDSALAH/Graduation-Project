@@ -1,7 +1,12 @@
+import 'dart:io';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kidscontrol/modules/kids_control/Home/homepage.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:path/path.dart';
 
 class AddKid extends StatefulWidget {
   const AddKid({super.key});
@@ -12,18 +17,38 @@ class AddKid extends StatefulWidget {
 
 class _AddKidState extends State<AddKid> {
 
+  File ? file;
+  String ? url;
+  bool _IsImage = true;
+
   AddKidImage()async {
     final ImagePicker picker = ImagePicker();
     final XFile? ImageKid = await picker.pickImage(source: ImageSource.gallery);
-    //final XFile? photo = await picker.pickImage(source: ImageSource.camera);
-    // if(ImageKid != null){
-    //   file =File(ImageKid!.path);
-    //   var Refstorage = FirebaseStorage.instance.ref(basename(ImageKid!.path));
-    //   await Refstorage.putFile(file!);
-    //   url = await Refstorage.getDownloadURL();
-    //   _IsImage = false;
-    // }
-    // setState(() {});
+    if(ImageKid != null){
+      file =File(ImageKid.path);
+      var Refstorage = FirebaseStorage.instance.ref(basename(ImageKid.path));
+      await Refstorage.putFile(file!);
+      url = await Refstorage.getDownloadURL();
+      _IsImage = false;
+    }
+    setState(() {});
+  }
+
+  _Kidinfo()async{
+    await FirebaseFirestore
+        .instance
+        .collection('KidsSide')
+        .doc(idController.text)
+        .set({
+      'FirstName' : firstNameController.text,
+      'LastName' : lastNameController.text,
+      'Email' : emailController.text,
+      'Age' : ageController.text,
+      'Id' : idController.text,
+      'Uid' : FirebaseAuth.instance.currentUser!.uid,
+      'Image' : url,
+    }).then((value) => print('Done Addkid info'))
+        .catchError((e)=>print(e));
   }
 
   var firstNameController = TextEditingController();
@@ -59,9 +84,14 @@ class _AddKidState extends State<AddKid> {
                 child: Stack(
                   alignment: AlignmentDirectional.bottomEnd,
                   children: [
-                    const CircleAvatar(
+                     _IsImage ? CircleAvatar(
                       radius: 50,
-                      backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),),
+                      backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
+                    )
+                         :CircleAvatar(
+                       radius: 50,
+                       backgroundImage: NetworkImage(url!),
+                     ),
                     CircleAvatar(
                       radius: 19,
                       backgroundColor: defaultColor,
@@ -226,8 +256,9 @@ class _AddKidState extends State<AddKid> {
                         color: Colors.white
                     ),
                   ),
-                  onPressed: (){
-                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=>  HomePage(),) , (route) => false);
+                  onPressed: ()async{
+                    await _Kidinfo();
+                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> HomePage() ), (route) => false);
                   },
                 ),
               ),

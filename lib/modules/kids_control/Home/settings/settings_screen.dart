@@ -171,23 +171,7 @@ class _SettingsState extends State<Settings> {
             ),
             GestureDetector(
               onTap: (){
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Change Language'),
-                      content: Text('We Are Sorry This Feature Not Implement Yet.'),
-                      actions: <Widget>[
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('Close'),
-                        ),
-                      ],
-                    );
-                  },
-                );
+                _displayDialogTerms(context);
               },
               child: Container(
                 width: double.infinity,
@@ -283,6 +267,37 @@ class _SettingsState extends State<Settings> {
         ),
       ),
     );
+  }
+  Future _displayDialogTerms(BuildContext context){
+    return showModalBottomSheet(
+        context: context,
+        builder: (context) =>
+            ConstrainedBox(
+              constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height*0.8),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 12,),
+                    Center(
+                      child: Column(
+                        children: [
+                          Text('Terms'),
+                          Divider(
+                            endIndent: 20,
+                            indent: 20,
+                          ),
+                          Expanded(
+                            child: Text('- A lot of Words :)'),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ));
   }
 }
 

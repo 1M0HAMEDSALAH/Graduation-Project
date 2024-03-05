@@ -9,8 +9,10 @@ class ContactUs extends StatefulWidget {
 }
 
 class _ContactUsState extends State<ContactUs> {
+
   var nameController = TextEditingController();
   var emailController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -157,7 +159,6 @@ class _ContactUsState extends State<ContactUs> {
               ],
             ),
             ),
-
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Center(
@@ -166,9 +167,26 @@ class _ContactUsState extends State<ContactUs> {
                   decoration:  BoxDecoration(
                     color: defaultColor,
                     borderRadius: BorderRadius.circular(10),),
-                  child: MaterialButton(onPressed: ()
-                  {
-                  },
+                  child: MaterialButton(
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            title: Text('Kids Control Team'),
+                            content: Text('Your Problem is Send Successfully \nThank you 💖.',style: TextStyle(color: defaultColor,fontSize: 20),),
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text('Close'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    },
                     child: Text('Submit',
                       style: TextStyle(
                         color: Colors.white,
@@ -180,7 +198,6 @@ class _ContactUsState extends State<ContactUs> {
             )
           ],
         ),
-
       ),
     );
   }

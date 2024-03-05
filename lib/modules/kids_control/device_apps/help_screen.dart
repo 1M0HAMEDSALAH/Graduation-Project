@@ -22,7 +22,14 @@ class _HelpScreenState extends State<HelpScreen> {
           ),
         ),
       ),
-
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Text('For Help Ask ChatGPT 😁',style: TextStyle(fontSize: 50),),
+          ),
+        ],
+      ),
     );
   }
 }

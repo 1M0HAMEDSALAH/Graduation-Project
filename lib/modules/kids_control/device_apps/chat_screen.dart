@@ -9,8 +9,8 @@ class ChatScreen extends StatefulWidget {
   State<ChatScreen> createState() => _ChatScreenState();
 }
 class _ChatScreenState extends State<ChatScreen> {
-  @override
   TextEditingController textController = TextEditingController();
+  @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(10.0),
