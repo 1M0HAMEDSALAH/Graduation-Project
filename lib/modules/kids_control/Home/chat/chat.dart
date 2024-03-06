@@ -60,7 +60,7 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
-                stream: _firestore.collection('Parents').orderBy('time').snapshots(),
+                stream: _firestore.collection('Parents').doc(FirebaseAuth.instance.currentUser!.uid).collection('Messages').orderBy('time').snapshots(),
                 builder: (context, snapshot) {
                   if(snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
@@ -138,7 +138,10 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
             onPressed: () {
               messageTextController.clear();
-              _firestore.collection('messages').add({
+              _firestore.collection('Parents')
+                  .doc(FirebaseAuth.instance.currentUser!.uid)
+                  .collection('Messages')
+                  .add({
                 'text': messageText,
                 'sender': signedInUser.email,
                 'time' : FieldValue.serverTimestamp(),
@@ -155,7 +158,6 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 }
 
-// بنية الرسالة المستخدمة في قائمة الرسائل
 class MessageLine extends StatelessWidget {
   const MessageLine({this.text, this.sender, required this.isMe, Key? key}) :
         super(key: key);

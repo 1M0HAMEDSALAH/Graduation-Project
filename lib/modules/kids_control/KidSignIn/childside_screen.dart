@@ -18,7 +18,6 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
   TextEditingController usernameController = TextEditingController();
   TextEditingController idController = TextEditingController();
 
-  List<Map<String, dynamic>> KidAuth = [];
   bool _isNull = false;
 
 
@@ -124,7 +123,6 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                       var res=await FirebaseFirestore.instance
                           .collection('KidsSide')
                           .doc(idController.text).get();
-                      print(res.exists);
                       if (res.exists) {
                         if (formkey.currentState!.validate()) {
                           if (res['FirstName'].toString() == usernameController.text) {
