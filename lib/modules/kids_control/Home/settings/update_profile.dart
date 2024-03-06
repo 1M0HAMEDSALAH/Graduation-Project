@@ -1,7 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
+import 'dart:io';
+import 'package:path/path.dart';
 
 class UpdatePhoto extends StatefulWidget {
   final String oldname ;
@@ -16,27 +20,34 @@ class UpdatePhoto extends StatefulWidget {
 class _UpdatePhotoState extends State<UpdatePhoto> {
 
 
+  File ? file;
+  String ? url;
+  bool _IsImage = true;
+
   ParentImage()async {
     final ImagePicker picker = ImagePicker();
     final XFile? ImageKid = await picker.pickImage(source: ImageSource.gallery);
-    // if(ImageKid != null){
-    //   file =File(ImageKid!.path);
-    //   var Refstorage = FirebaseStorage.instance.ref(basename(ImageKid!.path));
-    //   await Refstorage.putFile(file!);
-    //   url = await Refstorage.getDownloadURL();
-    //   _IsImage = false;
-    // }
-    // setState(() {});
+    if(ImageKid != null){
+      file =File(ImageKid!.path);
+      var Refstorage = FirebaseStorage.instance.ref(basename(ImageKid!.path));
+      await Refstorage.putFile(file!);
+      url = await Refstorage.getDownloadURL();
+      _IsImage = false;
+    }
+    setState(() {});
   }
 
   UpDateProfile()async {
-    await FirebaseFirestore.instance
-        .collection('Parents').doc()
-        .update({
+    await FirebaseFirestore
+        .instance
+        .collection('Parents').doc(FirebaseAuth.instance.currentUser!.uid)
+        .set({
       'Name': nameController.text,
       'Phone': phoneController.text,
       'BD': birthdayController.text,
-    });
+      'image' : url,
+    },SetOptions(merge: true)
+    );
   }
   @override
   void initState() {

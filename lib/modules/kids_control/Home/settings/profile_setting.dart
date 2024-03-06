@@ -70,11 +70,14 @@ class _ProfileState extends State<Profile> {
             ],
           ),
           const SizedBox(height: 30,),
-          const Center(
-            child: CircleAvatar(
+           Center(
+            child: profileData.isNotEmpty ? CircleAvatar(
+              radius: 60,
+              backgroundImage: NetworkImage(profileData[0]['image']),
+            ) : CircleAvatar(
               radius: 60,
               backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
-            ),
+            )
           ),
           const SizedBox(height: 35,),
           Row(
