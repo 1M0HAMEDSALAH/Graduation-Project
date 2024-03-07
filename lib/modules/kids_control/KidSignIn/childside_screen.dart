@@ -125,7 +125,7 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                           .doc(idController.text).get();
                       if (res.exists) {
                         if (formkey.currentState!.validate()) {
-                          if (res['FirstName'].toString() == usernameController.text) {
+                          if (res['Id'].toString() == idController.text) {
                             Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
                                     builder: (context) => DeviceApp(datakid: res,)),

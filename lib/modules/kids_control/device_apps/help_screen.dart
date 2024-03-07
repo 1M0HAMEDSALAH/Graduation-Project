@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 
 class HelpScreen extends StatefulWidget {
@@ -9,6 +10,20 @@ class HelpScreen extends StatefulWidget {
 }
 
 class _HelpScreenState extends State<HelpScreen> {
+
+
+  Future _locationkid() async {
+    bool ServiceOn;
+    ServiceOn = await Geolocator.isLocationServiceEnabled();
+    print(ServiceOn);
+  }
+
+  @override
+  void initState() {
+    _locationkid();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

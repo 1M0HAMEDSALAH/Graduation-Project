@@ -8,7 +8,9 @@ import 'appusage_screen.dart';
 import 'chat_screen.dart';
 import 'help_screen.dart';
 import 'notification_screen.dart';
-import 'package:collection/collection.dart'; // استيراد المكتبة المطلوبة
+import 'package:collection/collection.dart';
+import 'package:geolocator/geolocator.dart';
+
 
 class DeviceApp extends StatefulWidget {
   final datakid;
@@ -20,11 +22,61 @@ class DeviceApp extends StatefulWidget {
 
 class _DeviceAppState extends State<DeviceApp> {
 
+
+  double? long;
+  double? late;
+
+  Future _locationkid() async {
+    bool ServiceOn;
+    LocationPermission permission;
+    ServiceOn = await Geolocator.isLocationServiceEnabled();
+    if (!ServiceOn) {
+      return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Location 🤦‍♂️'),
+            content: Text('Make Sure The Location Service Is On.'),
+          );
+        },
+      );
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return print('==========================');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Location 🤦‍♂️'),
+            content: Text("You Can't Accesses To Kid Location ."),
+          );
+        },
+      );;
+    }
+    if(permission == LocationPermission.whileInUse){
+     Position position = await Geolocator.getCurrentPosition();
+     print('============================================');
+     print(position.longitude);
+     print(position.latitude);
+     print('============================================');
+     long = position.longitude;
+     late = position.latitude;
+    }
+  }
+
   @override
   void initState() {
     super.initState();
     getApps();
+    _locationkid();
   }
+
 
   getApps() async {
     UsageStats.grantUsagePermission();
@@ -72,6 +124,8 @@ class _DeviceAppState extends State<DeviceApp> {
         .doc('G3dFeGPoMNUFKu9iSvag')
         .set({
       'ApplicationsStatus':  appsData,
+      'long' : long,
+      'late' : late,
     }).then((value) => print("Apps added Or Updated to Firestore successfully"))
         .catchError((error) => print("Failed to add Or Updated apps: $error"));
   }
