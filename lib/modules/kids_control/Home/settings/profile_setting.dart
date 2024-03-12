@@ -71,7 +71,7 @@ class _ProfileState extends State<Profile> {
           ),
           const SizedBox(height: 30,),
            Center(
-            child: profileData.isNotEmpty ? CircleAvatar(
+            child: profileData[0]['image'] != null ? CircleAvatar(
               radius: 60,
               backgroundImage: NetworkImage(profileData[0]['image']),
             ) : CircleAvatar(

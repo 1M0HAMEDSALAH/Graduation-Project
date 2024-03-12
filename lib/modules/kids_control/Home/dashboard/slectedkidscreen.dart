@@ -76,7 +76,6 @@ class _KidScrenenState extends State<KidScrenen> {
                   Expanded(
                     child: IconButton(
                       onPressed: () {
-                        print('Block');
                         showDialog(
                           context: context,
                           builder: (BuildContext context) {

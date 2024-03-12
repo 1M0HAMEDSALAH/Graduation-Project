@@ -22,11 +22,9 @@ class Chats extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.only(left: 10, top: 10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ChatItems(),
-              const SizedBox(
-                height: 20,
-              ),
               ChatItems(),
             ],
           ),
@@ -51,7 +49,7 @@ class ChatItems extends StatelessWidget {
         children: [
           CircleAvatar(
             radius: 30,
-            backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
+            backgroundImage: AssetImage('assets/images/Children-pana.png'),
           ),
           const SizedBox(
               width: 10
@@ -60,7 +58,7 @@ class ChatItems extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Laila Mohammed",
+                "Your Kids",
                 style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 3),
@@ -68,7 +66,7 @@ class ChatItems extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    "go to bed",
+                    "...........................",
                     style: const TextStyle(
                         color: Colors.grey,
                         fontSize: 16,

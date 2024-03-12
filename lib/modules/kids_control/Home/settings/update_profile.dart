@@ -28,8 +28,8 @@ class _UpdatePhotoState extends State<UpdatePhoto> {
     final ImagePicker picker = ImagePicker();
     final XFile? ImageKid = await picker.pickImage(source: ImageSource.gallery);
     if(ImageKid != null){
-      file =File(ImageKid!.path);
-      var Refstorage = FirebaseStorage.instance.ref(basename(ImageKid!.path));
+      file =File(ImageKid.path);
+      var Refstorage = FirebaseStorage.instance.ref(basename(ImageKid.path));
       await Refstorage.putFile(file!);
       url = await Refstorage.getDownloadURL();
       _IsImage = false;
@@ -78,9 +78,13 @@ class _UpdatePhotoState extends State<UpdatePhoto> {
                     child: Stack(
                       alignment: AlignmentDirectional.bottomEnd,
                       children: [
-                        const CircleAvatar(
+                        _IsImage ? CircleAvatar(
                           radius: 50,
-                          backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),),
+                          backgroundImage: AssetImage('assets/images/Unknown_person.jpg'),
+                        ) : CircleAvatar(
+                          radius: 50,
+                          backgroundImage: NetworkImage(url!),
+                        ),
                         CircleAvatar(
                           radius: 19,
                           backgroundColor: defaultColor,

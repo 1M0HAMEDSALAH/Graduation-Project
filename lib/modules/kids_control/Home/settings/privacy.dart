@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 
@@ -43,9 +44,10 @@ class _PrivacyState extends State<Privacy> {
                 const SizedBox(
                   height: 20,
                 ),
-                Padding(
+                Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Expanded(
+                    flex: 1,
                     child: Column(
                       children: [
                         Row(crossAxisAlignment: CrossAxisAlignment.start,
@@ -60,6 +62,7 @@ class _PrivacyState extends State<Privacy> {
                               width: 10,
                             ),
                             Expanded(
+                              flex: 1,
                               child: Container(width:double.infinity ,
                                 child: const Text('Location of your kids to let you know where are your kids .',
                                   style: TextStyle(
@@ -77,9 +80,10 @@ class _PrivacyState extends State<Privacy> {
                 const SizedBox(
                   height: 8,
                 ),
-                Padding(
+                Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Expanded(
+                    flex: 1,
                     child: Column(
                       children: [
                         Row(crossAxisAlignment: CrossAxisAlignment.start,
@@ -94,6 +98,7 @@ class _PrivacyState extends State<Privacy> {
                               width: 10,
                             ),
                             Expanded(
+                              flex: 1,
                               child: Container(width:double.infinity ,
                                 child: const Text('All install apps to know what the apps your kids use .',
                                   style: TextStyle(
@@ -111,9 +116,10 @@ class _PrivacyState extends State<Privacy> {
                 const SizedBox(
                   height: 8,
                 ),
-                Padding(
+                Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Expanded(
+                    flex: 1,
                     child: Column(
                       children: [
                         Row(crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,6 +134,7 @@ class _PrivacyState extends State<Privacy> {
                               width: 10,
                             ),
                             Expanded(
+                              flex: 1,
                               child: Container(width:double.infinity ,
                                 child: const Text('Usaged For application to learn you how many times your kids access the apps .',
                                   style: TextStyle(
@@ -158,9 +165,10 @@ class _PrivacyState extends State<Privacy> {
                 const SizedBox(
                   height: 20,
                 ),
-                Padding(
+                Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Expanded(
+                    flex: 1,
                     child: Column(
                       children: [
                         Row(crossAxisAlignment: CrossAxisAlignment.start,
@@ -175,6 +183,7 @@ class _PrivacyState extends State<Privacy> {
                               width: 10,
                             ),
                             Expanded(
+                              flex: 1,
                               child: Container(width:double.infinity ,
                                 child: const Text('To use our application you must signup with real account and verify it with the email link .',
                                   style: TextStyle(
@@ -193,9 +202,10 @@ class _PrivacyState extends State<Privacy> {
                 const SizedBox(
                   height: 8,
                 ),
-                Padding(
+                Container(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Expanded(
+                    flex: 1,
                     child: Column(
                       children: [
                         Row(crossAxisAlignment: CrossAxisAlignment.start,
@@ -210,6 +220,7 @@ class _PrivacyState extends State<Privacy> {
                               width: 10,
                             ),
                             Expanded(
+                              flex: 1,
                               child: Container(width:double.infinity ,
                                 child: const Text('To adding your kids :\nsignin and go to the dashboard and tap on the floating button then fill the fields we need and submit the go to dashboard and you will see the kid added you can remove the kid or edit the data of your kid , you also can chat with your kids and see where are your kids stay .',
                                   style: TextStyle(

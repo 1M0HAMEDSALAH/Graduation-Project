@@ -57,7 +57,7 @@ class _DeviceAppState extends State<DeviceApp> {
             content: Text("You Can't Accesses To Kid Location ."),
           );
         },
-      );;
+      );
     }
     if(permission == LocationPermission.whileInUse){
      Position position = await Geolocator.getCurrentPosition();
