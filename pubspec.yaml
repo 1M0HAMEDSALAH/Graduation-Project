@@ -34,6 +34,7 @@ dependencies:
   icon_icons: ^1.0.4
   icons_plus: ^5.0.0
   fluttertoast: ^8.2.4
+  permission_handler: ^11.3.0
 
   intl:
   hexcolor: ^3.0.1
@@ -41,12 +42,21 @@ dependencies:
   image_picker: ^1.0.7
   widget_loading: ^0.3.3
   fl_chart: ^0.66.2
+  percent_indicator: ^4.0.1
+  google_fonts: ^6.1.0
+  url_launcher: ^6.2.4
+  flutter_svg: ^2.0.9
+  just_audio: ^0.9.36
+  flutter_tts: ^3.8.5
+  card_swiper: ^3.0.1
+  flutter_card_swiper: ^7.0.0
 
   #Firebase Space
   firebase_core: ^2.24.2
   firebase_auth: ^4.16.0
   cloud_firestore: ^4.15.4
   firebase_storage: ^11.6.7
+  firebase_messaging: ^14.7.18
 
   #SignIn/Up Methods
   google_sign_in: ^6.2.1
@@ -81,7 +91,9 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
-  #   - images/a_dot_ham.jpeg
+    - assets/sounds/
+    - assets/body/
+    - assets/birds/
 
 
   fonts:

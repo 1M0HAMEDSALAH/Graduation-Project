@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/modules/kids_control/Home/homepage.dart';
-import 'package:kidscontrol/modules/kids_control/on_boarding/onboarding_screen.dart';
+import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/homepage.dart';
+import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/on_boarding/onboarding_screen.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 
 
