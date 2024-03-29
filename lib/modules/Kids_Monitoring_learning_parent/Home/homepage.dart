@@ -4,84 +4,82 @@ import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/dashboa
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/location/location_screen.dart';
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/notification/notification_screen.dart';
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/settings/settings_screen.dart';
+import 'package:lottie/lottie.dart';
 
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
 }
 
-
 class _HomePageState extends State<HomePage> {
-
   int currentIndex = 0;
-  List<Widget> screens = [
+  final List<Widget> screens = [
     Dashboard(),
     Location(),
     Chats(),
     Noti(),
     Settings(),
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body:
-      screens[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.indigo,
-        elevation: 10.0,
-        currentIndex: currentIndex,
-        onTap: (index) {
-          setState(() {
-            currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.dashboard_customize_outlined,
-              color: Colors.black87,
-              size: 35.0,),
-            activeIcon: Icon(Icons.dashboard_customize_outlined,
-                color: Colors.indigoAccent),
-            label: 'Dashboard',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.location_on_outlined,
-              color: Colors.black87,
-              size: 35.0,),
-            activeIcon: Icon(Icons.location_on_outlined,
-                color: Colors.indigoAccent),
-            label: 'location',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat_outlined,
-              color: Colors.black87,
-              size: 35.0,),
-            activeIcon: Icon(Icons.chat_outlined,
-                color: Colors.indigoAccent),
-            label: 'Chat',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.notifications_none_sharp,
-              color: Colors.black87,
-              size: 35.0,),
-            activeIcon: Icon(Icons.notifications_none_rounded,
-                color: Colors.indigoAccent),
-            label: 'Notification',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.settings_outlined,
-              color: Colors.black87,
-              size: 35.0,),
-            activeIcon: Icon(
-                Icons.settings_outlined,
-                color: Colors.indigoAccent,
-            ),
-            label: 'Settings',
-          ),
-        ],
-      ),
+      body: screens[currentIndex],
+      bottomNavigationBar: buildBottomNavigationBar(),
     );
   }
 
+  BottomNavigationBar buildBottomNavigationBar() {
+    return BottomNavigationBar(
+      selectedItemColor: Colors.indigo,
+      elevation: 10.0,
+      currentIndex: currentIndex,
+      onTap: (index) {
+        setState(() {
+          currentIndex = index;
+        });
+      },
+      type: BottomNavigationBarType.fixed,
+      items: [
+        buildBottomNavigationBarItem(
+          'assets/Nav_bar_anamation/dashboard.json',
+          'Dashboard',
+        ),
+        buildBottomNavigationBarItem(
+          'assets/Nav_bar_anamation/loc.json',
+          'Location',
+        ),
+        buildBottomNavigationBarItem(
+          'assets/Nav_bar_anamation/chaat.json',
+          'Chat',
+        ),
+        buildBottomNavigationBarItem(
+          'assets/Nav_bar_anamation/not.json',
+          'Notification',
+        ),
+        buildBottomNavigationBarItem(
+          'assets/Nav_bar_anamation/setting.json',
+          'Settings',
+        ),
+      ],
+    );
+  }
+
+  BottomNavigationBarItem buildBottomNavigationBarItem(
+      String assetPath, String label) {
+    return BottomNavigationBarItem(
+      icon: Lottie.asset(
+        assetPath,
+        height: 40,
+        width: 40,
+      ),
+      activeIcon: Lottie.asset(
+        assetPath,
+        height: 35,
+        width: 35,
+        animate: true,
+      ),
+      label: label,
+    );
+  }
 }

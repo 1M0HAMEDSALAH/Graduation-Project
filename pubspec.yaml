@@ -22,6 +22,7 @@ dependencies:
   #important packages for KidsControl app
   device_apps: ^2.2.0
   usage_stats: ^1.2.0
+  lottie: ^3.1.0
 
   flutter_map: ^6.1.0
   latlong2: ^0.9.0
@@ -94,6 +95,7 @@ flutter:
     - assets/sounds/
     - assets/body/
     - assets/birds/
+    - assets/Nav_bar_anamation/
 
 
   fonts:
