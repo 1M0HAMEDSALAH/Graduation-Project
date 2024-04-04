@@ -42,10 +42,10 @@ class _LocationState extends State<Location> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FlutterMap(
-          options: const MapOptions(
+          options: MapOptions(
             zoom: 15,
             maxZoom: 50,
-            center: LatLng(30.596898, 31.490392),
+            center: LatLng(profileData.isNotEmpty ? profileData[0]['late'] : 31.490392, profileData.isNotEmpty ? profileData[0]['long'] : 31.490392),
           ),
         children: <Widget>[
           TileLayer(
@@ -55,7 +55,7 @@ class _LocationState extends State<Location> {
            MarkerLayer(
             markers: [
               Marker(
-                point: const LatLng(30.596898, 31.490392),
+                point: LatLng(profileData.isNotEmpty ? profileData[0]['late'] : 31.490392, profileData.isNotEmpty ? profileData[0]['long'] : 31.490392),
                 width: 80,
                 height: 80,
                 child: IconButton(

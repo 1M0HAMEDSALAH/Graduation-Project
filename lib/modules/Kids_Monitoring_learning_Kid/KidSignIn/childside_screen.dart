@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 import 'package:widget_loading/widget_loading.dart';
 import '../device_apps/deviceapps_screen.dart';
@@ -20,6 +21,58 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
 
   bool _isNull = false;
 
+  double? long;
+  double? late;
+
+  Future _locationkid() async {
+    bool ServiceOn;
+    LocationPermission permission;
+    ServiceOn = await Geolocator.isLocationServiceEnabled();
+    if (!ServiceOn) {
+      return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Location 🤦‍♂️'),
+            content: Text('Make Sure The Location Service Is On.'),
+          );
+        },
+      );
+    }
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return print('==========================');
+      }
+    }
+    if (permission == LocationPermission.deniedForever) {
+      return showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text('Location 🤦‍♂️'),
+            content: Text("You Can't Accesses To Kid Location ."),
+          );
+        },
+      );
+    }
+    if(permission == LocationPermission.whileInUse){
+      Position position = await Geolocator.getCurrentPosition();
+      print('============================================');
+      print(position.longitude);
+      print(position.latitude);
+      print('============================================');
+      long = position.longitude;
+      late = position.latitude;
+    }
+  }
+
+  @override
+  void initState() {
+    _locationkid();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -123,6 +176,16 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                       var res=await FirebaseFirestore.instance
                           .collection('KidsSide')
                           .doc(idController.text).get();
+                      await FirebaseFirestore
+                          .instance
+                          .collection('KidsSide')
+                          .doc(idController.text)
+                          .set({
+                        'long' : long,
+                        'late' : late,
+                      },
+                      SetOptions(merge: true),
+                      );
                       if (res.exists) {
                         if (formkey.currentState!.validate()) {
                           if (res['Id'].toString() == idController.text) {
