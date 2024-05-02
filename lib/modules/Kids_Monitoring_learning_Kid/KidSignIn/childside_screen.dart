@@ -4,7 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 import 'package:widget_loading/widget_loading.dart';
-import '../device_apps/deviceapps_screen.dart';
+import '../KidsSpaceScreens/deviceapps_screen.dart';
+
 
 class ChildSideScreen extends StatefulWidget {
   const ChildSideScreen({Key? key}) : super(key: key);

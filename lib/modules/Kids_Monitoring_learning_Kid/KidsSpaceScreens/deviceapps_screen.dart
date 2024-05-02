@@ -5,6 +5,7 @@ import 'package:kidscontrol/modules/Kids_Monitoring_learning_Kid/laerning_side/H
 import 'package:usage_stats/usage_stats.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 import 'package:widget_loading/widget_loading.dart';
+import 'taskspage.dart';
 import 'appusage_screen.dart';
 import 'chat_screen.dart';
 import 'help_screen.dart';
@@ -133,6 +134,20 @@ class _DeviceAppState extends State<DeviceApp> {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const MyHomePage()));
+              },
+            ),
+            ListTile(
+              title: const Text(
+                'Tasks Space',
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: defaultColor,
+                ),
+              ),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => MyTasksPage(id: widget.datakid,)));
               },
             ),
             ListTile(

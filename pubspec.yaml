@@ -51,6 +51,8 @@ dependencies:
   flutter_tts: ^3.8.5
   card_swiper: ^3.0.1
   flutter_card_swiper: ^7.0.0
+  conditional_builder_null_safety: ^0.0.6
+
 
   #Firebase Space
   firebase_core: ^2.24.2

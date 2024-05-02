@@ -170,8 +170,8 @@ class _SettingsState extends State<Settings> {
               height: 8,
             ),
             GestureDetector(
-              onTap: (){
-                _displayDialogTerms(context);
+              onTap: ()
+              {
               },
               child: Container(
                 width: double.infinity,
@@ -187,7 +187,7 @@ class _SettingsState extends State<Settings> {
                       style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: 20,
-                        fontFamily: 'default'
+                          fontFamily: 'default'
                     ),),
                     Spacer(),
                     Icon(
@@ -255,7 +255,7 @@ class _SettingsState extends State<Settings> {
                     'Log Out',
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
+                      fontSize: 20,
                       fontWeight: FontWeight.w700,
                       fontFamily: 'Default',
                     ),
@@ -267,37 +267,6 @@ class _SettingsState extends State<Settings> {
         ),
       ),
     );
-  }
-  Future _displayDialogTerms(BuildContext context){
-    return showModalBottomSheet(
-        context: context,
-        builder: (context) =>
-            ConstrainedBox(
-              constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height*0.8),
-              child: Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const SizedBox(height: 12,),
-                    Center(
-                      child: Column(
-                        children: [
-                          Text('Terms'),
-                          Divider(
-                            endIndent: 20,
-                            indent: 20,
-                          ),
-                          Expanded(
-                            child: Text('- A lot of Words :)'),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ));
   }
 }
 

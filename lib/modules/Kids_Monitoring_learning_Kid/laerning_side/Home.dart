@@ -3,6 +3,7 @@ import 'package:kidscontrol/modules/Kids_Monitoring_learning_Kid/laerning_side/p
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_Kid/laerning_side/pages/atoz.dart';
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_Kid/laerning_side/pages/birds.dart';
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_Kid/laerning_side/pages/parts.dart';
+import 'package:kidscontrol/shared/styles/colors.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
@@ -23,7 +24,8 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: const Text(
           'Learning Space',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle( color: defaultColor,fontSize: 25.0,
+              fontWeight: FontWeight.w700),
         ),
       ),
       body: SingleChildScrollView(
@@ -66,7 +68,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(height: 20),
               const Text(
                 'ALPHABETS',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: defaultColor),
               ),
               const Text("Learn A to Z with pronunciation and an example"),
               const SizedBox(
@@ -107,7 +109,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(height: 20),
               const Text(
                 'ANIMALS',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: defaultColor),
               ),
               const Text("Learn about animals and their voices"),
               const SizedBox(
@@ -148,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(height: 20),
               const Text(
                 'BODY PARTS',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: defaultColor),
               ),
               const Text("Know about body parts and their pronunciation."),
               const SizedBox(height: 20),
@@ -187,7 +189,7 @@ class _MyHomePageState extends State<MyHomePage> {
               const SizedBox(height: 20),
               const Text(
                 'BIRDS',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold,color: defaultColor),
               ),
               const Text("Look out for Birds with their sounds."),
             ],

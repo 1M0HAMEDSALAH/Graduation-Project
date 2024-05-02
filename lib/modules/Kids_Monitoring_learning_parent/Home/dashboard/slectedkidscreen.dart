@@ -71,62 +71,62 @@ class _KidScrenenState extends State<KidScrenen> {
                 endIndent: 100,
                 indent: 100,
               ),
-              Row(
-                children: [
-                  Expanded(
-                    child: IconButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('Block App'),
-                              content: Text('We Are Sorry This Feature Not Implement Yet.'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('Close'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      icon: Icon(Icons.block, color: defaultColor, size: 50),
-                    ),
-                  ),
-                  Expanded(
-                    child: IconButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              title: Text('schedule Screen Time'),
-                              content: Text('We Are Sorry This Feature Not Implement Yet.'),
-                              actions: <Widget>[
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: Text('Close'),
-                                ),
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      icon: Icon(Icons.schedule, color: defaultColor, size: 50),
-                    ),
-                  ),
-                ],
-              ),
-              Divider(
-                indent: 14,
-                endIndent: 14,
-              ),
+              // Row(
+              //   children: [
+              //     Expanded(
+              //       child: IconButton(
+              //         onPressed: () {
+              //           showDialog(
+              //             context: context,
+              //             builder: (BuildContext context) {
+              //               return AlertDialog(
+              //                 title: Text('Block App'),
+              //                 content: Text('We Are Sorry This Feature Not Implement Yet.'),
+              //                 actions: <Widget>[
+              //                   TextButton(
+              //                     onPressed: () {
+              //                       Navigator.of(context).pop();
+              //                     },
+              //                     child: Text('Close'),
+              //                   ),
+              //                 ],
+              //               );
+              //             },
+              //           );
+              //         },
+              //         icon: Icon(Icons.block, color: defaultColor, size: 50),
+              //       ),
+              //     ),
+              //     Expanded(
+              //       child: IconButton(
+              //         onPressed: () {
+              //           showDialog(
+              //             context: context,
+              //             builder: (BuildContext context) {
+              //               return AlertDialog(
+              //                 title: Text('schedule Screen Time'),
+              //                 content: Text('We Are Sorry This Feature Not Implement Yet.'),
+              //                 actions: <Widget>[
+              //                   TextButton(
+              //                     onPressed: () {
+              //                       Navigator.of(context).pop();
+              //                     },
+              //                     child: Text('Close'),
+              //                   ),
+              //                 ],
+              //               );
+              //             },
+              //           );
+              //         },
+              //         icon: Icon(Icons.schedule, color: defaultColor, size: 50),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+              // Divider(
+              //   indent: 14,
+              //   endIndent: 14,
+              // ),
               Expanded(
                 child: Center(
                   child: FutureBuilder<DocumentSnapshot>(

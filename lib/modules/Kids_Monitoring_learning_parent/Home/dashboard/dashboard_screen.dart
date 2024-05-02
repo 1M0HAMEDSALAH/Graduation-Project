@@ -2,11 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/dashboard/addkid.dart';
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/dashboard/slectedkidscreen.dart';
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/homepage.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
+
 
 class Dashboard extends StatefulWidget {
 
@@ -29,12 +30,29 @@ class _DashboardState extends State<Dashboard> {
     setState(() {});
   }
 
+  _AddDataTasksToFirebase()async {
+    await FirebaseFirestore.instance
+        .collection('TasksSide')
+        .add({
+      'Task Name' : Taskcontrl.text ,
+      'Task Time' : Timecontrl.text ,
+      'Task Date' : Datecontrl.text ,
+      'id' : idcontrl.text,
+    });
+  }
+
   static const TextStyle optionStyle = TextStyle(
       fontSize: 24,
       fontWeight: FontWeight.bold,
       color: defaultColor,
     fontFamily: 'default',
   );
+
+  var Formkey = GlobalKey<FormState>();
+  var Taskcontrl = TextEditingController();
+  var Timecontrl = TextEditingController();
+  var Datecontrl = TextEditingController();
+  var idcontrl = TextEditingController();
 
   @override
 void initState() {
@@ -51,11 +69,11 @@ void initState() {
           Navigator.of(context).push(MaterialPageRoute(builder: (context) =>  const AddKid()));
         },
         child:const Icon(
-          FontAwesomeIcons.add,
+          FontAwesomeIcons.plus,
           color: Colors.white,
           size: 34,
         ),
-        backgroundColor: Colors.indigoAccent,
+        backgroundColor: defaultColor,
         shape: const CircleBorder(),
       ),
         body: SingleChildScrollView(
@@ -65,7 +83,7 @@ void initState() {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               Padding(
+              Padding(
                 padding: EdgeInsets.only(left: 15.0, top: 30.0),
                 child: Row(
                   children: [
@@ -141,7 +159,7 @@ void initState() {
                                       onPressed: ()async {
                                         await FirebaseFirestore.instance.collection('KidsSide').doc(KidInfo[index].id).delete();
                                         Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> HomePage()), (route) => false);},
-                                      child: Text('Delete anyway😞'),
+                                      child: Text('Delete anyway '),
                                     ),
                                   ],
                                 );
@@ -166,50 +184,143 @@ void initState() {
                     },
                 ),
               ),
-              SizedBox(height: 24,),
-              Padding(
-                padding: const EdgeInsets.all(32.0),
-                child: Row(
-                  children: [
-                    CircularPercentIndicator(
-                      radius: 60.0,
-                      lineWidth: 5.0,
-                      percent: .9,
-                      center: new Text("90%"),
-                      progressColor: Colors.green,
-                    ),
-                    Spacer(),
-                    CircularPercentIndicator(
-                      radius: 60.0,
-                      lineWidth: 5.0,
-                      percent: .5,
-                      center: new Text("50%"),
-                      progressColor: Colors.red,
-                    ),
-                  ],
-                ),
+              SizedBox(
+                height: 24,
               ),
-              Center(
-                child: CircularPercentIndicator(
-                  radius: 60.0,
-                  lineWidth: 5.0,
-                  percent: .75,
-                  center: new Text("75%"),
-                  progressColor: Colors.red,
+              Container(
+                width: double.infinity,
+                height: 500,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  color: Colors.white.withOpacity(.2),
                 ),
-              ),
-              SizedBox(height: 24,),
-              Center(
-                child: CircularPercentIndicator(
-                  radius: 60.0,
-                  lineWidth: 5.0,
-                  percent: 1,
-                  center: new Text("100%"),
-                  progressColor: Colors.red,
+                child: Form(
+                  key: Formkey,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Assign Tasks For Your Kids',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 24.0,
+                          color: defaultColor,
+                          fontFamily: 'default',
+                        ),
+                      ),
+                      SizedBox(height: 24,),
+                      TextFormField(
+                        controller: idcontrl,
+                        keyboardType: TextInputType.text,
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return 'The Form Cant be empty';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          labelText: 'Type The ID Of The Target Kid',
+                          prefixIcon: const Icon(Icons.perm_identity),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+                        ),
+                      ),
+                      SizedBox(height: 24,),
+                      TextFormField(
+                        controller: Taskcontrl,
+                        keyboardType: TextInputType.name,
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return 'The Form Cant be empty';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          labelText: 'Task Title',
+                          prefixIcon: const Icon(Icons.task),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+                        ),
+                      ),
+                      const SizedBox(height: 24,),
+                      TextFormField(
+                        controller: Timecontrl,
+                        keyboardType: TextInputType.datetime,
+                        onTap: (){
+                          showTimePicker(
+                            context: context,
+                            initialTime: TimeOfDay.now(),
+                          ).then(
+                                  (value) => Timecontrl.text = value!.format(context).toString());
+                        },
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return 'The Form Cant be empty';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          labelText: 'Task Time',
+                          prefixIcon: const Icon(Icons.watch_later_outlined),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+                        ),
+                      ),
+                      const SizedBox(height: 24,),
+                      TextFormField(
+                        controller: Datecontrl,
+                        onTap: (){
+                          showDatePicker(
+                            context: context,
+                            initialDate: DateTime.now(),
+                            firstDate: DateTime.now(),
+                            lastDate: DateTime.parse('2030-05-03'),
+                          ).then(
+                                  (value) {
+                                Datecontrl.text = DateFormat.yMMMd().format(value!);
+                              }
+                          );
+                        },
+                        validator: (value){
+                          if(value!.isEmpty){
+                            return 'The Form Cant be empty';
+                          }
+                          return null;
+                        },
+                        decoration: InputDecoration(
+                          labelText: 'Date Time',
+                          prefixIcon: const Icon(Icons.date_range),
+                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
+                        ),
+                      ),
+                      const SizedBox(height: 24,),
+                      Center(
+                        child: Container(
+                          width: 300,
+                          height: 43,
+                          decoration:  BoxDecoration(
+                            color: defaultColor,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: MaterialButton(
+                            child: const Text(
+                              'Add Task For All Kids',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20,
+                                  color: Colors.white,
+                              ),
+                            ),
+                            onPressed: ()async {
+                              await _AddDataTasksToFirebase();
+                              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> HomePage() ), (route) => false);
+                            },
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ],
-                ),
+            ),
           ),
         ),
       );
