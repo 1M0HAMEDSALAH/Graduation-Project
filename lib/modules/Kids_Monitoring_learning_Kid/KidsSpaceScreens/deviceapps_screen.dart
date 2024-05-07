@@ -11,7 +11,6 @@ import 'chat_screen.dart';
 import 'help_screen.dart';
 import 'notification_screen.dart';
 import 'package:collection/collection.dart';
-import 'package:geolocator/geolocator.dart';
 
 
 class DeviceApp extends StatefulWidget {
@@ -29,7 +28,6 @@ class _DeviceAppState extends State<DeviceApp> {
   void initState() {
     super.initState();
     getApps();
-    // _locationkid();
   }
 
 

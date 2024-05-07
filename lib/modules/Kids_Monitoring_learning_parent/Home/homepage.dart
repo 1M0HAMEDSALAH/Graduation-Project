@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/chat/chat_screen.dart';
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/dashboard/dashboard_screen.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/location/location_screen.dart';
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/notification/notification_screen.dart';
 import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/settings/settings_screen.dart';
+import 'package:kidscontrol/shared/styles/colors.dart';
 import 'package:lottie/lottie.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   int currentIndex = 0;
   final List<Widget> screens = [
     Dashboard(),
-    Location(),
+    //Tasks(),
     Chats(),
     Noti(),
     Settings(),
@@ -29,9 +29,11 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  BottomNavigationBar buildBottomNavigationBar() {
+  BottomNavigationBar buildBottomNavigationBar()
+  {
     return BottomNavigationBar(
-      selectedItemColor: Colors.indigo,
+      fixedColor: defaultColor,
+      //selectedItemColor: defaultColor,
       elevation: 10.0,
       currentIndex: currentIndex,
       onTap: (index) {
@@ -45,10 +47,10 @@ class _HomePageState extends State<HomePage> {
           'assets/Nav_bar_anamation/dashboard.json',
           'Dashboard',
         ),
-        buildBottomNavigationBarItem(
-          'assets/Nav_bar_anamation/loc.json',
-          'Location',
-        ),
+        // buildBottomNavigationBarItem(
+        //   'assets/Nav_bar_anamation/loc.json',
+        //   'Location',
+        // ),
         buildBottomNavigationBarItem(
           'assets/Nav_bar_anamation/chaat.json',
           'Chat',
@@ -80,6 +82,7 @@ class _HomePageState extends State<HomePage> {
         animate: true,
       ),
       label: label,
+      backgroundColor: defaultColor,
     );
   }
 }

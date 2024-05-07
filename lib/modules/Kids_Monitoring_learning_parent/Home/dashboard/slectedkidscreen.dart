@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/dashboard/tracking_selected_kid.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 
 class KidScrenen extends StatefulWidget {
@@ -40,10 +41,19 @@ class _KidScrenenState extends State<KidScrenen> {
           widget.KidsName,
           style: optionStyle,
         ),
+        actions: [
+          IconButton(
+              onPressed: ()
+              {
+                Navigator.of(context).push(MaterialPageRoute(builder: (context) => TrackingKid(dataselectedkid: widget.ForMoreInfo,)));
+              },
+              icon: Icon(Icons.location_on_outlined , color: defaultColor,),
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Container(
-          height: MediaQuery.of(context).size.height, // Set a finite height
+          height: MediaQuery.of(context).size.height,
           child: Column(
             children: [
               Padding(
@@ -154,9 +164,11 @@ class _KidScrenenState extends State<KidScrenen> {
                         itemBuilder: (context, index) {
                           Map<String, dynamic> appData = applicationsStatus[index];
                           String appName = appData['AppName'];
-                          String appPackageName = appData['AppPackageName'];
+                          //String appPackageName = appData['AppPackageName'];
                           String appTimeUse = appData['AppTimeUse'];
                           String lastTimeUse = appData['LastTimeUse'];
+
+                          // if((int.parse(appTimeUse) > 0)
 
                           return ListTile(
                             title: Text(

@@ -184,15 +184,12 @@ void initState() {
                     },
                 ),
               ),
-              SizedBox(
-                height: 24,
-              ),
               Container(
                 width: double.infinity,
-                height: 500,
+                height: 550,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
-                  color: Colors.white.withOpacity(.2),
+                  color: Colors.white.withOpacity(.1),
                 ),
                 child: Form(
                   key: Formkey,
@@ -214,7 +211,7 @@ void initState() {
                         keyboardType: TextInputType.text,
                         validator: (value){
                           if(value!.isEmpty){
-                            return 'The Form Cant be empty';
+                            return 'The ID Of The Target Kid Cant be empty';
                           }
                           return null;
                         },
@@ -230,7 +227,7 @@ void initState() {
                         keyboardType: TextInputType.name,
                         validator: (value){
                           if(value!.isEmpty){
-                            return 'The Form Cant be empty';
+                            return 'The Title Cant be empty';
                           }
                           return null;
                         },
@@ -253,7 +250,7 @@ void initState() {
                         },
                         validator: (value){
                           if(value!.isEmpty){
-                            return 'The Form Cant be empty';
+                            return 'The Time Cant be empty';
                           }
                           return null;
                         },
@@ -280,7 +277,7 @@ void initState() {
                         },
                         validator: (value){
                           if(value!.isEmpty){
-                            return 'The Form Cant be empty';
+                            return 'The Date Cant be empty';
                           }
                           return null;
                         },
@@ -309,8 +306,11 @@ void initState() {
                               ),
                             ),
                             onPressed: ()async {
-                              await _AddDataTasksToFirebase();
-                              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> HomePage() ), (route) => false);
+                              if(Formkey.currentState!.validate())
+                              {
+                                await _AddDataTasksToFirebase();
+                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context)=> HomePage() ), (route) => false);
+                              }
                             },
                           ),
                         ),

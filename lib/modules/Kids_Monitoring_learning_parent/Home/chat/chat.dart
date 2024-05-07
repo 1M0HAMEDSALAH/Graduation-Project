@@ -1,6 +1,10 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:path/path.dart';
 
 late User signedInUser;
 
@@ -17,8 +21,10 @@ class _ChatScreenState extends State<ChatScreen> {
   final messageTextController = TextEditingController();
   final _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final ImagePicker _imagePicker = ImagePicker();
 
   String? messageText;
+  File? imageFile;
 
   @override
   void initState() {
@@ -40,7 +46,6 @@ class _ChatScreenState extends State<ChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -60,9 +65,14 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
-                stream: _firestore.collection('Parents').doc(FirebaseAuth.instance.currentUser!.uid).collection('Messages').orderBy('time').snapshots(),
+                stream: _firestore
+                    .collection('Parents')
+                    .doc(_auth.currentUser!.uid)
+                    .collection('Messages')
+                    .orderBy('time')
+                    .snapshots(),
                 builder: (context, snapshot) {
-                  if(snapshot.connectionState == ConnectionState.waiting) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
                     return Center(
                       child: CircularProgressIndicator(
                         backgroundColor: Colors.blue,
@@ -74,7 +84,7 @@ class _ChatScreenState extends State<ChatScreen> {
                       child: Text("No messages yet!"),
                     );
                   }
-                  return buildMessagesList(snapshot.data!.docs.toList().reversed);
+                  return buildMessagesList(snapshot.data!.docs.toList().reversed.toList());
                 },
               ),
             ),
@@ -85,15 +95,14 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  // بناء قائمة الرسائل
-  Widget buildMessagesList(Iterable<QueryDocumentSnapshot> messages) {
+  Widget buildMessagesList(List<QueryDocumentSnapshot> messages) {
     return ListView.builder(
       reverse: true,
       itemCount: messages.length,
       itemBuilder: (context, index) {
-        final message = messages.elementAt(index);
-        final messegeText = message.get('text');
-        final messegesender = message.get('sender');
+        final message = messages[index];
+        final messegeText = message['text'];
+        final messegesender = message['sender'];
         final currentUser = signedInUser.email;
 
         return MessageLine(
@@ -105,13 +114,27 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  // بناء مربع إدخال الرسائل
   Widget buildMessageInput() {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          Flexible(
+          IconButton(
+            onPressed: () async {
+              final pickedImage = await _imagePicker.pickImage(source: ImageSource.gallery);
+              if (pickedImage != null) {
+                setState(() {
+                  imageFile = File(pickedImage.path);
+                });
+              }
+            },
+            icon: const Icon(
+              Icons.image,
+              color: Colors.blue,
+            ),
+          ),
+          const SizedBox(width: 10),
+          Expanded(
             child: Container(
               height: 40,
               decoration: BoxDecoration(
@@ -137,15 +160,7 @@ class _ChatScreenState extends State<ChatScreen> {
           const SizedBox(width: 10),
           IconButton(
             onPressed: () {
-              messageTextController.clear();
-              _firestore.collection('Parents')
-                  .doc(FirebaseAuth.instance.currentUser!.uid)
-                  .collection('Messages')
-                  .add({
-                'text': messageText,
-                'sender': signedInUser.email,
-                'time' : FieldValue.serverTimestamp(),
-              });
+              sendMessage();
             },
             icon: const Icon(
               Icons.send,
@@ -155,6 +170,49 @@ class _ChatScreenState extends State<ChatScreen> {
         ],
       ),
     );
+  }
+
+  void sendMessage() {
+    if (messageText != null || imageFile != null) {
+      _firestore.collection('Parents')
+          .doc(_auth.currentUser!.uid)
+          .collection('Messages')
+          .add({
+        'text': messageText,
+        'sender': signedInUser.email,
+        'time': FieldValue.serverTimestamp(),
+      });
+
+      if (imageFile != null) {
+        uploadImage(imageFile!);
+      }
+
+      messageTextController.clear();
+      setState(() {
+        imageFile = null;
+      });
+    }
+  }
+
+  void uploadImage(File imageFile) async {
+    try {
+      final Reference refStorage = FirebaseStorage.instance.ref().child(
+          basename(imageFile.path));
+      await refStorage.putFile(imageFile);
+      final imageUrl = await refStorage.getDownloadURL();
+
+      _firestore.collection('Parents')
+          .doc(_auth.currentUser!.uid)
+          .collection('Messages')
+          .add({
+        'image_url': imageUrl,
+        'sender': signedInUser.email,
+        'time': FieldValue.serverTimestamp(),
+      });
+    } catch (error) {
+      print(
+          "Error uploading image: $error"); // استخدم print() لطباعة الاستثناءات
+    }
   }
 }
 
