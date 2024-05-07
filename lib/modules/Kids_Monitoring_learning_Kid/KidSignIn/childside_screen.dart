@@ -173,8 +173,9 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                   child: MaterialButton(
-                    onPressed: ()async {
-                      var res=await FirebaseFirestore.instance
+                    onPressed: ()async
+                    {
+                      var res = await FirebaseFirestore.instance
                           .collection('KidsSide')
                           .doc(idController.text).get();
                       await FirebaseFirestore

@@ -5,7 +5,6 @@ import 'package:latlong2/latlong.dart';
 
 class TrackingKid extends StatefulWidget {
   final dataselectedkid ;
-
   const TrackingKid({super.key, required this.dataselectedkid});
 
   @override
@@ -13,8 +12,6 @@ class TrackingKid extends StatefulWidget {
 }
 
 class _TrackingKidState extends State<TrackingKid> {
-
-//profileData.isNotEmpty ? profileData[0]['late'] : 31.490392, profileData.isNotEmpty ? profileData[0]['long'] : 31.490392
 
   @override
   Widget build(BuildContext context) {

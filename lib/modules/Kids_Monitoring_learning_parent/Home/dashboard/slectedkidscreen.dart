@@ -159,29 +159,35 @@ class _KidScrenenState extends State<KidScrenen> {
 
                       List<dynamic> applicationsStatus = snapshot.data!['ApplicationsStatus'];
 
-                      return ListView.builder(
-                        itemCount: applicationsStatus.length,
-                        itemBuilder: (context, index) {
-                          Map<String, dynamic> appData = applicationsStatus[index];
-                          String appName = appData['AppName'];
-                          //String appPackageName = appData['AppPackageName'];
-                          String appTimeUse = appData['AppTimeUse'];
-                          String lastTimeUse = appData['LastTimeUse'];
+                      if(applicationsStatus.isEmpty)
+                      {
+                        return Center(child: CircularProgressIndicator());
+                      }
+                      else{
+                        return ListView.builder(
+                          itemCount: applicationsStatus.length,
+                          itemBuilder: (context, index) {
+                            Map<String, dynamic> appData = applicationsStatus[index];
+                            String appName = appData['AppName'];
+                            //String appPackageName = appData['AppPackageName'];
+                            String appTimeUse = appData['AppTimeUse'];
+                            String lastTimeUse = appData['LastTimeUse'];
 
-                          // if((int.parse(appTimeUse) > 0)
+                            // if((int.parse(appTimeUse) > 0)
 
-                          return ListTile(
-                            title: Text(
-                              appName,
-                              style: TextStyle(
-                                color: defaultColor,
-                                fontWeight: FontWeight.w600,
+                            return ListTile(
+                              title: Text(
+                                appName,
+                                style: TextStyle(
+                                  color: defaultColor,
+                                  fontWeight: FontWeight.w600,
+                                ),
                               ),
-                            ),
-                            subtitle: Text('Time Use :  ${(int.parse(appTimeUse) / 1000 / 60).toStringAsFixed(2)} Minutes\nLast Time Use: ${DateFormat('dd-MM-yyyy HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(lastTimeUse)))}'),
-                          );
-                        },
-                      );
+                              subtitle: Text('Time Use :  ${(int.parse(appTimeUse) / 1000 / 60).toStringAsFixed(2)} Minutes\nLast Time Use: ${DateFormat('dd-MM-yyyy HH:mm:ss').format(DateTime.fromMillisecondsSinceEpoch(int.parse(lastTimeUse)))}'),
+                            );
+                          },
+                        );
+                      }
                     },
                   ),
                 ),
