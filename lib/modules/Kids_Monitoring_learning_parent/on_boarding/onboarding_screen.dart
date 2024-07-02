@@ -135,7 +135,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
            children: [
              Container(
                       width: 300,
-                      height: 43,
+                      height: 50,
                 decoration:  BoxDecoration(
                 color: defaultColor,
                 borderRadius: BorderRadius.circular(10),

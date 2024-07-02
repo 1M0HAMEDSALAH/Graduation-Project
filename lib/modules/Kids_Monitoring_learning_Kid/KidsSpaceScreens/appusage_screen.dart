@@ -1,7 +1,6 @@
 import 'package:device_apps/device_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_Kid/laerning_side/Home.dart';
 import 'package:kidscontrol/shared/styles/colors.dart';
 import 'package:usage_stats/usage_stats.dart';
 import 'package:widget_loading/widget_loading.dart';

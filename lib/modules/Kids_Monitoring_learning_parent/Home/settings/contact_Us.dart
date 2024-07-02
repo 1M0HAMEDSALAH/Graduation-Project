@@ -192,7 +192,9 @@ class _ContactUsState extends State<ContactUs> {
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                         fontSize: 25,
-                      ),),),
+                      ),
+                    ),
+                  ),
                 ),
               ),
             )

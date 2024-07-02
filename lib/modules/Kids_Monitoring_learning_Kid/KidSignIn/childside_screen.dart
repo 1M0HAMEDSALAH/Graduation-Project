@@ -167,7 +167,7 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                 ),
                 Container(
                   width: 300,
-                  height: 43,
+                  height: 50,
                   decoration: BoxDecoration(
                     color: defaultColor,
                     borderRadius: BorderRadius.circular(10),
@@ -223,7 +223,7 @@ class _ChildSideScreenState extends State<ChildSideScreen> {
                       'Sign In',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 30,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

@@ -90,7 +90,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                 Center(
                   child: Container(
                     width: 300,
-                    height: 43,
+                    height: 50,
                     decoration:  BoxDecoration(
                       color: defaultColor,
                       borderRadius: BorderRadius.circular(10),
@@ -100,7 +100,7 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                           'Reset Password',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: 24,
                           color: Colors.white
                         ),
                       ),

@@ -74,6 +74,6 @@ class NotificationsManager {
   }
 
   void dispose() {
-    _notificationStreamController?.close();
+    _notificationStreamController.close();
   }
 }

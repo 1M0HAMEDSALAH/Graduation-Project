@@ -208,7 +208,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 Container(
                   width: 300,
-                  height: 43,
+                  height: 50,
                   decoration:  BoxDecoration(
                     color: defaultColor,
                     borderRadius: BorderRadius.circular(10),
@@ -222,7 +222,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       'Sign Up',
                       style: TextStyle(
                         color: Colors.white,
-                        fontSize: 25,
+                        fontSize: 24,
                         fontWeight: FontWeight.bold,
                         fontFamily: 'Default',
                       ),

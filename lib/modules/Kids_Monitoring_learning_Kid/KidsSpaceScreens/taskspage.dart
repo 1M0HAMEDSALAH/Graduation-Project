@@ -54,6 +54,12 @@ class _MyTasksPageState extends State<MyTasksPage> {
                 onDismissed: (direction) async {
                   //del
                   await FirebaseFirestore.instance.collection('TasksSide').doc(TasksData[index].id).delete();
+                  //add Notification
+                  await FirebaseFirestore.instance.collection('Notification').add({
+                    'name' :TasksData[index]['Task Name'],
+                    'date' :TasksData[index]['Task Date'],
+                    'finish' : FieldValue.serverTimestamp(),
+                  });
                 },
                 key: Key(TasksData[index]['id'].toString()),
                 child: Padding(
@@ -61,7 +67,7 @@ class _MyTasksPageState extends State<MyTasksPage> {
                   child: Row(
                     children: [
                       CircleAvatar(
-                        backgroundColor: defaultColor,
+                        backgroundColor: Color.fromRGBO(45, 139, 232, 1),
                         radius: 40,
                         child: Text('${TasksData[index]['Task Time']}',
                           style: TextStyle(color: Colors.white,fontFamily: 'default',),),
