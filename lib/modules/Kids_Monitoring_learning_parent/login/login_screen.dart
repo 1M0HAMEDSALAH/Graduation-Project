@@ -4,10 +4,10 @@ import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:icon_icons/icon_icons.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/homepage.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/login/forget_password.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/signup/signup_screen.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/Home/homepage.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/login/forget_password.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/signup/signup_screen.dart';
+import 'package:KidsMonitorAndLearning/shared/styles/colors.dart';
 
 
 class LoginScreen extends StatefulWidget {

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/chat/chat_screen.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/dashboard/dashboard_screen.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/notification/notification_screen.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/settings/settings_screen.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/Home/chat/chat_screen.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/Home/dashboard/dashboard_screen.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/Home/notification/notification_screen.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/Home/settings/settings_screen.dart';
+import 'package:KidsMonitorAndLearning/shared/styles/colors.dart';
 import 'package:lottie/lottie.dart';
 
 class HomePage extends StatefulWidget {

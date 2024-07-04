@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:KidsMonitorAndLearning/shared/styles/colors.dart';
 import 'login_screen.dart';
 
 class ForgetPassword extends StatefulWidget {

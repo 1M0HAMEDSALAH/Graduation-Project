@@ -2,11 +2,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/settings/contact_Us.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/settings/privacy.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/settings/profile_setting.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/login/login_screen.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/Home/settings/contact_Us.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/Home/settings/privacy.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/Home/settings/profile_setting.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/login/login_screen.dart';
+import 'package:KidsMonitorAndLearning/shared/styles/colors.dart';
 
 
 class Settings extends StatefulWidget {

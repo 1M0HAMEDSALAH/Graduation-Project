@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/dashboard/tracking_selected_kid.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/Home/dashboard/tracking_selected_kid.dart';
+import 'package:KidsMonitorAndLearning/shared/styles/colors.dart';
 
 class KidScrenen extends StatefulWidget {
   final KidsName;

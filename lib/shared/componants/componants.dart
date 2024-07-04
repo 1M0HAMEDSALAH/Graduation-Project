@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:KidsMonitorAndLearning/shared/styles/colors.dart';
 
 Widget defultButton({
   Color background = defaultColor,

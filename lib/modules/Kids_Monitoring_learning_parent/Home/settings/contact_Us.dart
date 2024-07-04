@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:KidsMonitorAndLearning/shared/styles/colors.dart';
 
 class ContactUs extends StatefulWidget {
   const ContactUs({super.key});
@@ -150,7 +150,7 @@ class _ContactUsState extends State<ContactUs> {
                 ),
                 const Padding(
                   padding: EdgeInsets.only(left: 45),
-                  child: Text('KidsControl2024@gmail.com',
+                  child: Text('KidsMonitorAndLearning2024@gmail.com',
                     style: TextStyle(
                       fontSize: 17,
                     ),

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:KidsMonitorAndLearning/shared/styles/colors.dart';
 
 class Privacy extends StatefulWidget {
   const Privacy({super.key});

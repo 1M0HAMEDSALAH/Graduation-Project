@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/chat/chat.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/Home/chat/chat.dart';
+import 'package:KidsMonitorAndLearning/shared/styles/colors.dart';
 
 class Chats extends StatelessWidget {
   const Chats({Key? key});

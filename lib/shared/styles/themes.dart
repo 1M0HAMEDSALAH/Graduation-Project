@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:KidsMonitorAndLearning/shared/styles/colors.dart';
 ThemeData darkTheme =  ThemeData(
   scaffoldBackgroundColor: Colors.black,
   appBarTheme: const AppBarTheme(

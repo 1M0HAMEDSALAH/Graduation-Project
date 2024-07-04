@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_parent/Home/settings/update_profile.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_parent/Home/settings/update_profile.dart';
+import 'package:KidsMonitorAndLearning/shared/styles/colors.dart';
 import 'package:widget_loading/widget_loading.dart';
 
 class Profile extends StatefulWidget {

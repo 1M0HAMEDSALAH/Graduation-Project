@@ -16,7 +16,7 @@
 
 
     <application
-        android:label="kidscontrol"
+        android:label="KidsMonitorAndLearning"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity

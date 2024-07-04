@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_Kid/laerning_side/pages/animals.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_Kid/laerning_side/pages/atoz.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_Kid/laerning_side/pages/birds.dart';
-import 'package:kidscontrol/modules/Kids_Monitoring_learning_Kid/laerning_side/pages/parts.dart';
-import 'package:kidscontrol/shared/styles/colors.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_Kid/laerning_side/pages/animals.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_Kid/laerning_side/pages/atoz.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_Kid/laerning_side/pages/birds.dart';
+import 'package:KidsMonitorAndLearning/modules/Kids_Monitoring_learning_Kid/laerning_side/pages/parts.dart';
+import 'package:KidsMonitorAndLearning/shared/styles/colors.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);

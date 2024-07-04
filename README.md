@@ -1,4 +1,4 @@
-# kidscontrol
+# KidsMonitorAndLearning
 
 A new Flutter project.
 

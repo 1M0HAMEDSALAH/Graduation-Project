@@ -1,4 +1,4 @@
-package com.example.kidscontrol
+package com.example.KidsMonitorAndLearning
 
 import io.flutter.embedding.android.FlutterActivity
 

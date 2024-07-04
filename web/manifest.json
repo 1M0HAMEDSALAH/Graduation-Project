@@ -1,6 +1,6 @@
 {
-    "name": "kidscontrol",
-    "short_name": "kidscontrol",
+    "name": "KidsMonitorAndLearning",
+    "short_name": "KidsMonitorAndLearning",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
